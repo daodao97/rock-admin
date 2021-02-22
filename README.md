@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <img width="284" src="https://gitee.com/daodao97/asset/raw/master/imgs/rock-admin.png">
+    <img width="284" src="https://gitee.com/daodao97/asset/raw/master/imgs/oms.png">
   </p>
   <div align="center">
 
@@ -30,17 +30,11 @@
 ### 本地启动
 
 ```shell
-git clone https://github.com/daodao97/rock-admin.git
-cd rock-admin/exmaple
+git clone https://github.com/daodao97/oms.git
+cd oms/exmaple
 yarn
 yarn serve
 ```
-
-### 生态项目
-
-- Golang + RockAdmin [go-rock-amdin](https://github.com/daodao97/go-rock-admin)
-
-- PHP(hyperf) + RockAdmin [hyperf-admin](https://github.com/hyperf-admin/hyperf-admin)
 
 ### 运行流程
 
@@ -50,11 +44,11 @@ yarn serve
 
 ### 插件机制
 
-#### `rock-admin` 
+#### `oms` 
   
   核心组件, 用于构建整个后台应用机制, 包括 路由/鉴权/菜单/PageSchema解析等基础能力
   
-#### `rock-plugin-devtool`
+#### `oms-plugin-devtool`
   
   辅助开发组件, 注册页面构建工具的菜单及功能实现
 
