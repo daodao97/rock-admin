@@ -29,7 +29,8 @@ export default {
       components: [],
       directives: {},
       mockApis: [],
-      routes: []
+      routes: [],
+      storeModules: {}
     }
   ]
 }

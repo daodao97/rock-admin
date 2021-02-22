@@ -144,7 +144,6 @@ export default {
       this.showMenu = false
     },
     onkeyup(cm, e) {
-      console.log(e)
       if (e.keyCode >= 56 && e.keyCode <= 90 && e.ctrlKey === false) {
         const state = cm.getTokenAt(cm.getCursor()).state
         const isSql = this.state ? state.curMode.name === 'sql' : false

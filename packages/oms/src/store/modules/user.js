@@ -137,7 +137,6 @@ const actions = {
                 tpl += '{"' + each + '":true}' + '}'.repeat(len - 1)
               }
             })
-            // console.log(tpl.format(...item))
             resourceTree = _.merge(resourceTree, JSON.parse(tpl.format(...item)))
           })
           commit('UP_STATE', { 'id': id, resource: resourceTree, roleIds: role_ids || [] })

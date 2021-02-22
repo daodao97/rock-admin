@@ -1,6 +1,7 @@
 import mockApis from '../mock'
 import Test from './views/Test.vue'
 import { Layout } from 'oms'
+import * as storeModules from './store'
 
 const routes = [
   {
@@ -20,5 +21,6 @@ const routes = [
 
 export default {
   routes: routes,
-  mockApis: mockApis
+  mockApis: mockApis,
+  storeModules: storeModules
 }

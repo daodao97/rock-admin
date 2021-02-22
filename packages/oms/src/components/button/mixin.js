@@ -91,7 +91,6 @@ export default {
               type: 'warning'
             }
           ).then(() => {
-            console.log(3333)
             let data = this.$props.injectData
             if (isFunc(data)) {
               data = data()
@@ -109,11 +108,10 @@ export default {
             options.url = strVarReplace(options.url, this.$props.metaData)
 
             this.$http.request(options).then(({ payload }) => {
-              console.log('api success', payload)
               this.$emit('action', payload)
             })
           }).catch(error => {
-            console.log('cancel', error)
+            console.error('cancel', error)
           })
         },
         table: () => {

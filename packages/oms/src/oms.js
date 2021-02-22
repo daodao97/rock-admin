@@ -46,6 +46,17 @@ function regDirective(directives = {}) {
   })
 }
 
+function regStoreModule(modules = {}) {
+  const keepModuleNames = ['app', 'settings', 'user']
+  Object.keys(modules).forEach(item => {
+    if (keepModuleNames.indexOf(item)) {
+      console.warn(`storeModule name [${item}] is use by base, please change it!`)
+      return
+    }
+    store.registerModule(item, modules[item])
+  })
+}
+
 export default function(options = {}) {
   options = _.merge(defaultOptions, options)
   // 同步基础 config 到 store
@@ -64,14 +75,14 @@ export default function(options = {}) {
   })
 
   options.plugins.forEach(item => {
-    console.log(item)
     regComponents(item.components || [])
     regRoutes(item.routes || [])
     regUse(item.use || [])
+    regDirective(item.directives || {})
+    regStoreModule(item.storeModules || {})
     if (options.mock.enable) {
       mockXHR(item.mockApis || [], options.mock.baseURI)
     }
-    regDirective(item.directives || {})
   })
 
   app.config.devtools = true

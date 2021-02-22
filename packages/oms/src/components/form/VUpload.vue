@@ -124,7 +124,7 @@ export default {
       return this.$refs.upload.$el.getElementsByClassName('el-upload')[0]
     },
     onError(err, file, fileList) {
-      console.log(err)
+      console.error(err)
       this.$notify.error({
         title: '上传失败',
         message: err

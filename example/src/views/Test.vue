@@ -33,27 +33,6 @@ export default defineComponent({
         }
       ]
     }
-  },
-  beforeCreate() {
-    console.log('beforeCreate')
-  },
-  created() {
-    console.log('created')
-  },
-  beforeMount() {
-    console.log('beforeMount')
-  },
-  beforeUnmount() {
-    console.log('beforeUnmount')
-  },
-  mounted() {
-    console.log('mounted')
-  },
-  unmounted() {
-    console.log('unmounted')
-  },
-  errorCaptured(err, instance, info) {
-    console.log(err, instance, info)
   }
 })
 </script>

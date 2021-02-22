@@ -500,7 +500,7 @@ export default {
       } else if (this.listIncreaseConf.type === 'unshift') {
         this.tableList.unshift(record)
       } else {
-        console.log('unknown listIncrease type')
+        console.warn('unknown listIncrease type')
       }
       this.rowKey++
     },

@@ -10,7 +10,6 @@ import { addNewLine } from './utils';
     const text = cm.getRange(fromLine, to)
 
     const mode = cm.getOption('mode')
-    console.log(mode)
     let out = ''
     if (mode === 'application/json') {
       out = JSON.stringify(JSON.parse(text), null, 2)

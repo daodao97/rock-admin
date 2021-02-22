@@ -12,6 +12,7 @@
     "oms-plugin-devtool": "file:../packages/plugin-devtool"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.2",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vitejs/plugin-vue-jsx": "^1.1.0",
     "@vue/babel-plugin-jsx": "^1.0.3",

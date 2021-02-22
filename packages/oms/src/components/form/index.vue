@@ -370,7 +370,6 @@ export default {
           })
         this.$emit('submit', this.formData)
       } else {
-        console.log('error submit!!')
         showEleByClassName('is-error')
         return false
       }
