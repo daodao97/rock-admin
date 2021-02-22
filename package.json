@@ -1,0 +1,25 @@
+{
+  "name": "oms-full-pkg",
+  "version": "0.0.0",
+  "scripts": {
+    "oms": "sh ./publish.sh"
+  },
+  "dependencies": {
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vitejs/plugin-vue-jsx": "^1.1.0",
+    "@vue/babel-plugin-jsx": "^1.0.3",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-eslint": "^10.1.0",
+    "ejs": "^3.1.6",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.6.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-visualizer": "^4.2.0",
+    "sass": "^1.32.7",
+    "vite": "^2.0.1"
+  },
+  "license": "MIT"
+}

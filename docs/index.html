@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rock-admin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4.11.6/themes/vue.css">
+    <link rel="shortcut icon" type="image/icon" href="/rock-admin/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/element-plus@1.0.2-beta.28/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="//cdn.jsdelivr.net/npm/docsify@4.11.6/lib/docsify.min.js"></script>
+<script src="./vue-comp-demo.js"></script>
+<script src="//cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+<script src="//cdn.jsdelivr.net/npm/vue-router@4.0.3/dist/vue-router.global.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/element-plus@1.0.2-beta.28/lib/index.full.js"></script>
+<script src="rockadmin.umd.min.js"></script>
+<script>
+
+    window.$docsify = {
+        logo: '/logo.jpg',
+        name: 'rock-admin',
+        repo: 'https://github.com/daodao97/rock-admin',
+        // coverpage: true, // 开启封面
+        loadNavbar: true,
+        loadSidebar: true,
+        maxLevel: 4,
+        subMaxLevel: 3,
+        autoHeader: true,
+        search: {
+            maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+            paths: 'auto', // or 'auto'
+            placeholder: 'Type to search'
+        },
+        plugins: [
+            vueCompDemo([
+              VueRouter.createRouter({history: VueRouter.createWebHashHistory(), routes: []}),
+              [ElementPlus, {size: 'mini', zIndex: 3000}],
+              rockadmin.default
+            ]),
+            function (hook, vm) {
+              hook.beforeEach(function (html) {
+                return '> 如果觉得不错给我来个Star吧 [🚀Github](http://github.com/daodao97/rock-admin) ' + '\n\n----\n\n' + html
+              })
+            },
+            function (hook, vm) {
+                hook.beforeEach(function (html) {
+                    if (/githubusercontent\.com/.test(vm.route.file)) {
+                        url = vm.route.file
+                            .replace('raw.githubusercontent.com', 'github.com')
+                            .replace(/\/master/, '/blob/master')
+                    } else {
+                        url = 'https://github.com/hyperf-admin/hyperf-admin/edit/master/docs/' + vm.route.file
+                    }
+                    var editHtml = '[:memo: 编辑文档!](' + url + ')&nbsp;&nbsp;'
+
+                    return html
+                        + '\n\n----\n\n'
+                        + editHtml
+                        + '<a href="https://docsify.js.org" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">Powered by docsify</a>'
+                })
+            }
+        ]
+    }
+</script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-bash.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-bash.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-php.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-json.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-sql.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-nginx.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2.1.1/dist/docsify-copy-code.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify@4.11.6/lib/plugins/zoom-image.js"></script>
+<!--<script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>-->
+</body>
+</html>

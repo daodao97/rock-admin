@@ -1,0 +1,18 @@
+.impowerBox .title {
+    display: none;
+}
+
+.impowerBox .status {
+    color: #fff;
+}
+
+.impowerBox .qrcode {
+    width: 200px;
+}
+
+/*
+  tip
+  微信外链css链接只支持https
+  所以使用base64加密方式引用css，使用下方链接，将上方代码加密后，然后加`data:text/css;base64,`前缀即可
+ */
+/* http://tool.chinaz.com/Tools/Base64.aspx */

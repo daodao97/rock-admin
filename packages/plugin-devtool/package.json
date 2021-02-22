@@ -1,0 +1,43 @@
+{
+  "name": "oms-plugin-devtool",
+  "version": "0.1.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:report": "export REPORT=true && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "node-sql-parser": "^3.1.0",
+    "oms": "file:../oms",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vitejs/plugin-vue-jsx": "^1.1.0",
+    "@vue/babel-plugin-jsx": "^1.0.3",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.6.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-visualizer": "^4.2.0",
+    "sass": "^1.32.7",
+    "vite": "^2.0.1"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "main": "./lib/oms-plugin-devtool.umd.js",
+  "module": "./lib/oms-plugin-devtool.es.js",
+  "style": "./lib/style.css",
+  "exports": {
+    "./style.css": "./lib/style.css",
+    ".": {
+      "import": "./lib/oms-plugin-devtool.es.js",
+      "require": "./lib/oms-plugin-devtool.umd.js"
+    }
+  },
+  "license": "MIT"
+}

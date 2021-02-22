@@ -1,0 +1,62 @@
+{
+  "name": "oms",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:report": "export REPORT=true && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "codemirror": "^5.59.2",
+    "core-js": "^3.8.3",
+    "echarts": "^5.0.2",
+    "element-plus": "^1.0.2-beta.32",
+    "file": "^0.2.2",
+    "file-saver": "^2.0.5",
+    "inputmask": "^5.0.5",
+    "js-cookie": "^2.2.1",
+    "jsonlint": "^1.6.3",
+    "lodash": "^4.17.20",
+    "mitt": "^2.1.0",
+    "mockjs": "^1.1.0",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
+    "path-to-regexp": "^6.2.0",
+    "qs": "^6.9.6",
+    "resize-detector": "^0.2.2",
+    "system": "^2.0.1",
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0",
+    "xlsx": "^0.16.9"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vitejs/plugin-vue-jsx": "^1.1.0",
+    "@vue/babel-plugin-jsx": "^1.0.3",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.6.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-visualizer": "^4.2.0",
+    "sass": "^1.32.7",
+    "vite": "^2.0.1"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "main": "./lib/oms.umd.js",
+  "module": "./lib/oms.es.js",
+  "style": "./lib/style.css",
+  "exports": {
+    "./style.css": "./lib/style.css",
+    ".": {
+      "import": "./lib/oms.es.js",
+      "require": "./lib/oms.umd.js"
+    }
+  },
+  "license": "MIT"
+}
