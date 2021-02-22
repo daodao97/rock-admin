@@ -1,4 +1,4 @@
-系统对 `axios` 做了简单封装, 组件中所有api请假将通过 [src/utils/request](https://github.com/daodao97/rock-admin/blob/master/src/utils/request.js) 进行请求.
+系统对 `axios` 做了简单封装, 组件中所有api请假将通过 [src/utils/request](https://github.com/daodao97/oms/blob/master/src/utils/request.js) 进行请求.
 
 所有请求将自动添加`header头` `Authorization`, 值为用户`Token`
 

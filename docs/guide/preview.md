@@ -1,4 +1,4 @@
-[体验站点](http://daodao97.gitee.io/rock-admin-demo)
+[体验站点](http://daodao97.gitee.io/oms-demo)
 
 ![IKkquO](https://gitee.com/daodao97/asset/raw/master/imgs/IKkquO.png)
 

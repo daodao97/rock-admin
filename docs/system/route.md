@@ -1,10 +1,10 @@
 
-`rockAdmin` 的路由为 `本地` + `远程` 两种模式, 
+`oms` 的路由为 `本地` + `远程` 两种模式, 
 
 ### 本地路由
 
 ```js
-import { createAdmin, Layout } from 'rock-admin'
+import { createAdmin, Layout } from 'oms'
 createAdmin({
     routes: [
       {

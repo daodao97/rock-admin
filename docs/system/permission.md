@@ -8,9 +8,9 @@
 
 2. `/user/info` 下发资源列表
 
-3. 前端 `filterResource` 对资源进行过滤, [源码](https://github.com/daodao97/rock-admin/blob/master/src/store/modules/user.js#L183)
+3. 前端 `filterResource` 对资源进行过滤, [源码](https://github.com/daodao97/oms/blob/master/src/store/modules/user.js#L183)
 
-4. `addRoute` 路由注册, [源码](https://github.com/daodao97/rock-admin/blob/master/src/store/modules/user.js#L198)
+4. `addRoute` 路由注册, [源码](https://github.com/daodao97/oms/blob/master/src/store/modules/user.js#L198)
 
 5. 页面渲染, 页面配置 `PageSchem` 保存在 `this.$route.meta.pageSchema` 中, 访问某路由时将自动获取页面的配置并完成渲染.
    ![ZgzCjd](https://gitee.com/daodao97/asset/raw/master/imgs/ZgzCjd.png)

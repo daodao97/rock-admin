@@ -15,6 +15,7 @@ export default defineComponent({
   name: 'Test',
   components: { VForm, VChart },
   data() {
+    console.log(this.$store.state)
     return {
       options1,
       comps: {

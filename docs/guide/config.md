@@ -1,6 +1,6 @@
 ## 启动配置项
 
-默认配置可见 [src/options](https://github.com/daodao97/rock-admin/blob/master/src/options.js)
+默认配置可见 [src/options](https://github.com/daodao97/oms/blob/master/src/options.js)
 
 ```javascript
 {
@@ -15,7 +15,7 @@
   mock: { enable: false, apis: [], baseURI: '', defaultMockApi: true },
   use: [],
   config: {
-    title: 'RockAdmin',
+    title: 'OMS',
     fixedHeader: false,
     sidebarLogo: true,
     logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png',

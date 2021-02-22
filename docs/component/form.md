@@ -39,7 +39,7 @@ export default {
                         field: "test",
                         label: "单行文本",
                         type: "input",
-                        info: "表单控件支持提示信息, 支持html <a href=http://github.com/daodao97>RockAdmin</a>",
+                        info: "表单控件支持提示信息, 支持html <a href=http://github.com/daodao97/oms>daodao97/oms</a>",
                         props: {
                             maxlength: 10,
                             suffixIcon: "el-icon-date",
@@ -451,7 +451,7 @@ export default {
 
 #### formItems 表单控件配置
 
-可查看 [example](https://github.com/daodao97/rock-admin/blob/master/example/mock/data/example.js) 完整样例,
+可查看 [example](https://github.com/daodao97/oms/blob/master/example/mock/data/example.js) 完整样例,
 
 表单控件各项配置说明
 

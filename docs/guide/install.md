@@ -3,9 +3,9 @@
 在现有项目中安装本组件
 
 ```shell
-npm install rock-admin
+npm install oms
 # or
-yarn add rock-admin
+yarn add oms
 ```
 
 ### UMD
@@ -19,14 +19,14 @@ yarn add rock-admin
 使用本项目提供的模板快速创建本地项目
 
 ```shell
-vue create --preset daodao97/rock-admin my-admin
+vue create --preset daodao97/oms my-admin
 cd my-admin
 yarn serve
 ```
 
 ```js
 import 'element-plus/lib/theme-chalk/index.css'
-import { createAdmin } from 'rock-admin'
+import { createAdmin } from 'oms'
 
 import mockApis from '../mock'
 import settings from './settings'
