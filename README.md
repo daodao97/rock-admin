@@ -21,7 +21,7 @@
 
 </div>
 
-`rock-admin` 是基于 `Vue3`, `element-plus`, `vue-admin-template` 的配置化后台构建工具, 核心概念是配置化渲染, 页面根据后端下发的 `PageSchema` 自动渲染, 辅助可视化`PageSchema`构造工具, 使常见的后台页面可以无代码实现.
+`OMS: Operator Manager System` 是基于 `Vue3`, `element-plus`, `vue-admin-template` 的配置化后台构建工具, 核心概念是配置化渲染, 页面根据后端下发的 `PageSchema` 自动渲染, 辅助可视化`PageSchema`构造工具, 使常见的后台页面可以无代码实现.
 
 ### 目标
 
@@ -39,7 +39,7 @@ yarn serve
 ### 运行流程
 
 <div align="center">
-    <img src="https://gitee.com/daodao97/asset/raw/master/imgs/Y66eHA.png">
+    <img src="https://gitee.com/daodao97/asset/raw/master/imgs/tgK1ZU.jpg">
 </div>
 
 ### 插件机制
