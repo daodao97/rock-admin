@@ -49,7 +49,7 @@ function regDirective(directives = {}) {
 function regStoreModule(modules = {}) {
   const keepModuleNames = ['app', 'settings', 'user']
   Object.keys(modules).forEach(item => {
-    if (keepModuleNames.indexOf(item)) {
+    if (keepModuleNames.indexOf(item) !== -1) {
       console.warn(`storeModule name [${item}] is use by base, please change it!`)
       return
     }
