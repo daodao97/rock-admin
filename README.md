@@ -12,10 +12,10 @@
 
   <div>
 
-[体验站点](http://daodao97.gitee.io/rock-admin-demo) |
-[详细文档](https://daodao97.gitee.io/rock-admin) |
-[表单构建](http://daodao97.gitee.io/rock-admin-demo/#/devtool/gen_from) |
-[列表构建](http://daodao97.gitee.io/rock-admin-demo/#/devtool/gen_table)
+[体验站点](http://daodao97.gitee.io/oms-demo) |
+[详细文档](https://daodao97.gitee.io/oms) |
+[表单构建](http://daodao97.gitee.io/oms-demo/#/devtool/gen_from) |
+[列表构建](http://daodao97.gitee.io/oms-demo/#/devtool/gen_table)
 
   </div>
 

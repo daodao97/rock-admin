@@ -5,6 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "build:report": "export REPORT=true && vite build",
+    "demo": "vite build --emptyOutDir --base /oms-demo/ --outDir ../../oms-demo/dist",
     "serve": "yarn build && vite preview"
   },
   "dependencies": {
