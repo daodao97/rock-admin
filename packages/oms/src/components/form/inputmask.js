@@ -5,6 +5,6 @@ export default {
     if (!binding.value) {
       return
     }
-    Inputmask(binding.value).mask(el.getElementsByTagName('input')[0])
+    Inputmask.default(binding.value).mask(el.getElementsByTagName('input')[0])
   }
 }
