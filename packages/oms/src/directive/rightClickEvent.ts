@@ -1,5 +1,7 @@
 import bus from '../plugin/eventBus'
-export default {
+import { Directive } from 'vue'
+
+const rightClient : Directive = {
   mounted: (el, binding) => {
     if (el === null) {
       return
@@ -7,7 +9,7 @@ export default {
     if (binding.value) {
       // el.style.border = '1px solid red'
     }
-    el.oncontextmenu = (e) => {
+    el.oncontextmenu = (e: Event) => {
       e.preventDefault()
       e.stopPropagation()
       e.cancelBubble = true
@@ -15,3 +17,5 @@ export default {
     }
   }
 }
+
+export default rightClient

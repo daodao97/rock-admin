@@ -1,5 +1,6 @@
 import mitt from 'mitt'
 const eventBus = mitt()
+import type { App } from 'vue'
 
 const defaultOptions = {
   global: true,
@@ -8,11 +9,11 @@ const defaultOptions = {
   injectName: '$eventBus'
 }
 
-eventBus.install = install
+// eventBus.install = install
 export default eventBus
 export const bus = eventBus
 
-function install(app, options = {}) {
+export function install(app: App, options = {}) {
   const opt = {
     ...defaultOptions,
     ...options

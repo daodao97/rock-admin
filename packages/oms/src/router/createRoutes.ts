@@ -2,19 +2,32 @@ import Layout from '../layout/index.vue'
 import Form from '../scaffold/form.vue'
 import Container from '../scaffold/container.vue'
 import Table from '../scaffold/table.vue'
+import { RouteRecordRaw } from 'vue-router'
 
 const PAGE_TYPE_CUSTOM = 0
 const PAGE_TYPE_TABLE = 1
 const PAGE_TYPE_FORM = 2
 const PAGE_TYPE_CUSTOM_SCHEMA = 3
 
-const base = {
+const base: RouteRecordRaw = {
   path: '/',
   component: Layout,
   children: []
 }
 
-const getComponent = item => {
+interface remoteRoute {
+    view: string,
+    path: string,
+    page_type: number,
+    name: string,
+    id: number,
+    icon: string,
+    is_show: boolean,
+    page_schema: any,
+    children: remoteRoute[]
+}
+
+const getComponent = (item: remoteRoute) => {
   if (item.view) {
     return () => {
       return new Promise((resolve) => {
@@ -22,6 +35,7 @@ const getComponent = item => {
       })
     }
   }
+  console.log(2, item)
   if (item.path === '#') {
     return Container
   }
@@ -41,7 +55,10 @@ const getComponent = item => {
   }
   return Container
 }
-function getPath(item) {
+
+function getPath(item: remoteRoute) {
+  console.log(3, item)
+
   let path = item.path
   // :id 默认转换为数字型匹配模式
   if (path.indexOf(':id') > -1 && path.indexOf(':id') + 3 === path.length) {
@@ -54,8 +71,9 @@ function getPath(item) {
       : path
 }
 
-const transRoute = item => {
-  const route = {
+const transRoute = (item: remoteRoute): RouteRecordRaw => {
+  console.log(1, item)
+  const route: RouteRecordRaw = {
     path: getPath(item),
     name: item.path + item.name,
     component: getComponent(item),
@@ -66,17 +84,17 @@ const transRoute = item => {
       hidden: item.is_show !== undefined ? !item.is_show : false,
       pageSchema: item.page_schema || {}
     },
-    hidden: item.is_show !== undefined ? !item.is_show : false,
     children: item.children ? item.children.map(each => transRoute(each)) : []
   }
-  if (route.children.length > 0) {
+  if (route.children) {
     let allChildHidden = true
     route.children.forEach(each => {
-      if (!each.hidden) {
+      if (each.meta && !each.meta.hidden) {
         allChildHidden = false
       }
     })
     if (allChildHidden) {
+      console.log(3, item)
       route.redirect = route.children[0].path
       route.path = '/DIR' + route.redirect.replaceAll('/', '_').toUpperCase()
     }
@@ -85,9 +103,22 @@ const transRoute = item => {
   return route
 }
 
-const createRoutes = routesConfig => {
-  let remoteRoutes = []
-  const modules = []
+interface mod {
+    id: number,
+    label: string,
+    routes: remoteRoute[]
+}
+
+interface modRoute {
+    id: number,
+    label: string,
+    routes: RouteRecordRaw[]
+}
+
+// FIXME
+const createRoutes = (routesConfig: mod[]) => {
+  let remoteRoutes: RouteRecordRaw[] = []
+  const modules : modRoute[] = []
   routesConfig.forEach(item => {
     const routes = (item.routes || []).map(each => {
       return transRoute(each)
@@ -99,7 +130,8 @@ const createRoutes = routesConfig => {
     })
     remoteRoutes = remoteRoutes.concat(routes)
   })
-  base.children = [...base.children, ...remoteRoutes]
+  // @ts-ignore
+  base.children = [].concat(base.children || [], remoteRoutes)
   return modules
 }
 

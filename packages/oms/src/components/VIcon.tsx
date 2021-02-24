@@ -6,7 +6,7 @@ export default {
       required: true
     }
   },
-  setup(props) {
+  setup(props: { name: string | undefined }) {
     if (props.name === undefined) {
       return ''
     }

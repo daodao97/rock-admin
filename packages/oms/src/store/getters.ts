@@ -1,4 +1,6 @@
-const getters = {
+import { GetterTree } from 'vuex'
+
+const getters : GetterTree<any, String> = {
   config: state => state.app.config,
   sidebar: state => state.app.sidebar,
   device: state => state.app.device,

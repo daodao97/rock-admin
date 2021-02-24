@@ -5,15 +5,19 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '../utils/auth' // get token from cookie
 import { getUrlKey } from '../utils'
-import _ from 'lodash'
+import { cloneDeep } from 'lodash'
+import { RouteRecordRaw } from 'vue-router'
+import { Config } from '../store/modules/settings'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login'] // no redirect whitelist
 
-const setPageTitle = function(matched) {
-  let title = store.state.settings.title
-  _.cloneDeep(matched).reverse().forEach((item, index) => {
-    if (index < 2 && item.meta.title) {
+const setPageTitle = function(matched : RouteRecordRaw []) {
+  // @ts-ignore
+  const settings: Config = store.state.settings
+  let title = settings.title
+  cloneDeep(matched).reverse().forEach((item, index) => {
+    if (index < 2 && item.meta && item.meta.title) {
       title = item.meta.title + '-' + title
     }
   })

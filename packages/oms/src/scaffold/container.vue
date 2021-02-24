@@ -5,8 +5,9 @@
 </template>
 <script>
 import VLoading from '../components/VLoading.vue'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   components: {
     VLoading
   },
@@ -20,5 +21,5 @@ export default {
       this.key++
     }
   }
-}
+})
 </script>

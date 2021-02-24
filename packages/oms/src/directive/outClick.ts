@@ -1,6 +1,8 @@
-export default {
+import { Directive } from 'vue'
+
+const outClick : Directive = {
   beforeMount(el, binding) {
-    el.clickOutsideEvent = function(event) {
+    el.clickOutsideEvent = function(event: Event) {
       if (!(el === event.target || el.contains(event.target))) {
         binding.value(event, el)
       }
@@ -11,3 +13,5 @@ export default {
     document.body.removeEventListener('click', el.clickOutsideEvent)
   }
 }
+
+export default outClick

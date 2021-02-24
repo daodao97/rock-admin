@@ -20,8 +20,9 @@ import { Navbar, Sidebar, AppMain } from './components'
 import { addListener, removeListener } from 'resize-detector'
 const { body } = document
 const WIDTH = 992 // refer to Bootstrap's responsive design
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'Layout',
   components: {
     Navbar,
@@ -72,7 +73,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

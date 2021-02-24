@@ -1,4 +1,5 @@
-const tokens = {
+
+const tokens : Object = {
   admin: {
     token: 'admin-token'
   },
@@ -29,14 +30,18 @@ export default [
   {
     url: '/user/login',
     type: 'post',
-    response: options => {
+    response: (options: any) => {
+      console.log(options)
       const { username, ticket } = options.params
       if (ticket) {
+        // @ts-ignore
         return {
           code: 0,
+          // @ts-ignore
           payload: tokens['admin']
         }
       }
+      // @ts-ignore
       const token = tokens[username]
 
       // mock error
@@ -58,8 +63,9 @@ export default [
   {
     url: '/user/info.*',
     type: 'get',
-    response: options => {
+    response: (options: { params: { token: any } }) => {
       const { token } = options.params
+      // @ts-ignore
       const info = users[token]
 
       // mock error

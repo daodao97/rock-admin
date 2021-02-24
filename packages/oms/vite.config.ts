@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
+// @ts-ignore
 import visualizer from 'rollup-plugin-visualizer'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-const plugins = [
+const plugins: Plugin[] = [
   vue(),
   vueJsx()
 ]
@@ -25,11 +26,11 @@ export default defineConfig({
   build: {
     outDir: 'lib',
     lib: {
-      entry: resolve(__dirname, 'src/index.js'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'oms',
       formats: ['umd', 'es']
     },
-    sourcemap: false,
+    sourcemap: true,
     rollupOptions: {
       external: [
         'vue',

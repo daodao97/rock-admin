@@ -1,7 +1,8 @@
 import Mock from 'mockjs'
 import formatOptions from './formatOptions'
+import { ResponseFuc } from './index'
 
-export default function(url, method, resFunc, baseURI) {
+export default function(url: string | RegExp, method: string, resFunc: ResponseFuc, baseURI: any) {
   if (arguments.length === 1) {
     return Mock.mock(url)
   }
@@ -29,13 +30,8 @@ export default function(url, method, resFunc, baseURI) {
     url = url.replace(/\//g, '\\/')
     url += '(|\\?.*)$'
     url = new RegExp(baseURI + url)
-  } else if (!(url instanceof RegExp)) {
-    console.error(
-      `[${url}] Function Mock.mock's first param should be a string or regexp!!!`
-    )
-    return
   }
-  Mock.mock(url, method, function(options) {
+  Mock.mock(url, method, function(options: any) {
     // 格式化 options 对象
     options = formatOptions(options)
     let res = null
