@@ -5,7 +5,7 @@
     "dev": "vite --config test/dev.config.ts",
     "build": "vite build",
     "serve": "vite preview",
-    "tsc": "tsc",
+    "release": "release-it --dry-run",
     "eslint": "eslint --fix --ext .tsx --ext .ts src/"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "xlsx": "^0.16.9"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.2.0",
     "@types/file-saver": "^2.0.1",
     "@types/inputmask": "^5.0.0",
     "@types/js-cookie": "^2.2.6",
@@ -44,6 +45,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.20.0",
     "eslint-plugin-vue": "^7.6.0",
+    "release-it": "^14.4.1",
+    "rollup-plugin-typescript2": "^0.30.0",
     "sass": "^1.32.8",
     "typescript": "^4.1.3",
     "vite": "^2.0.1"
@@ -61,6 +64,6 @@
       "require": "./lib/oms.umd.js"
     }
   },
-  "types": "lib/index.d.ts",
+  "types": "lib/types/index.d.ts",
   "license": "MIT"
 }

@@ -2,6 +2,7 @@ import { BuildOptions, UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
+import typescript from '@rollup/plugin-typescript'
 
 const config : UserConfigExport = {
   resolve: {
@@ -12,7 +13,15 @@ const config : UserConfigExport = {
   server: {
     open: true
   },
-  plugins: [vue(), vueJsx()]
+  plugins: [
+    vue(),
+    vueJsx(),
+    typescript({
+      declaration: true,
+      declarationDir: 'lib/types',
+      rootDir: 'src'
+    })
+  ]
 }
 
 const build : BuildOptions = {
