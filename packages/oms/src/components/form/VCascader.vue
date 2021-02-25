@@ -1,19 +1,20 @@
 <template>
   <el-cascader
-    v-model="localValue"
-    :options="optionTree"
-    :disabled="disabled"
-    :clearable="clearable"
-    :show-all-levels="showAllLevels"
-    :collapse-tags="collapseTags"
-    :filterable="filterable"
-    :props="props"
-    :size="size"
-    @change="onchange"
+      v-model="localValue"
+      :options="optionTree"
+      :disabled="disabled"
+      :clearable="clearable"
+      :show-all-levels="showAllLevels"
+      :collapse-tags="collapseTags"
+      :filterable="filterable"
+      :props="props"
+      :size="size"
+      @change="onchange"
   />
 </template>
 <script>
-import { isNumber, searchTreeValues } from '../../utils'
+import {searchTreeValues} from '../../utils'
+import {isNumber} from '../../utils/type'
 import _ from 'lodash'
 
 export default {
@@ -51,7 +52,8 @@ export default {
     },
     props: {
       type: Object,
-      default: _ => {}
+      default: _ => {
+      }
     },
     size: {
       type: String,
@@ -78,7 +80,7 @@ export default {
     this.$props.optionsApi && this.$http.request({
       method: 'GET',
       url: this.$props.optionsApi
-    }).then(({ payload }) => {
+    }).then(({payload}) => {
       this.optionTree = payload || []
       if (isNumber(this.$props.modelValue)) {
         this.localValue = searchTreeValues(this.optionTree, this.$props.modelValue, 'value')

@@ -1,18 +1,19 @@
 <template>
-  <div ref="chartDom" class="chart" />
+  <div ref="chartDom" class="chart"/>
 </template>
 
 <script>
 import * as echarts from 'echarts/index.simple.js'
-import { ref, onMounted, shallowRef, onUnmounted } from 'vue'
-import { debounce } from '../../utils'
+import {ref, onMounted, shallowRef, onUnmounted} from 'vue'
+import {debounce} from '../../utils'
 
 export default {
   name: 'VChart',
   props: {
     options: {
       type: Object,
-      default: _ => {}
+      default: _ => {
+      }
     }
   },
   setup(props) {

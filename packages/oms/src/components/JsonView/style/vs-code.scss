@@ -1,10 +1,11 @@
-
 // vs-code
 .json-view-container {
   &.vs-code {
     background-color: #1e1e1e;
+
     .json-view {
       font-family: Menlo, Consolas, "Courier New", Courier, FreeMono, monospace !important;
+
       .json-note {
         color: #909399;
         font-size: 12px;
@@ -18,6 +19,7 @@
       .json-value {
         color: #c6937c;
       }
+
       .first-line {
         color: #d4d4d4;
       }
@@ -27,10 +29,12 @@
           border-left: 1px solid #404040;
         }
       }
+
       .last-line {
         color: #d4d4d4;
       }
-      .json-item{
+
+      .json-item {
         color: #d4d4d4;
       }
     }

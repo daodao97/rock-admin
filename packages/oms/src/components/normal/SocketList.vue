@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { showEleByClassName } from '../../utils'
+import {showEleByClassName} from '../../utils'
+
 let buffer = []
 export default {
   name: 'SocketList',
@@ -67,7 +68,7 @@ export default {
     getMaxHeight() {
       return document.body.clientHeight - document.body.clientHeight * 0.2
     },
-    tableRowClassName({ row, rowIndex }) {
+    tableRowClassName({row, rowIndex}) {
       const prefix = 'socket-list'
       if (rowIndex % 2 === 0) {
         return `${prefix} warning-row`

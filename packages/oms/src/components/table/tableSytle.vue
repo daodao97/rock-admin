@@ -1,62 +1,62 @@
 <template>
   <el-table
-    :data="dataList"
-    :load="loadChildren"
-    style="width: 100%"
-    v-bind="props"
-    @selection-change="handleSelectionChange"
-    @sort-change="sortTable"
+      :data="dataList"
+      :load="loadChildren"
+      style="width: 100%"
+      v-bind="props"
+      @selection-change="handleSelectionChange"
+      @sort-change="sortTable"
   >
-    <el-table-column v-if="selection" type="selection" />
+    <el-table-column v-if="selection" type="selection"/>
     <el-table-column
-      v-for="(item, index) in headers"
-      :key="index + '-table-column'"
-      :prop="item.field"
-      :label="item.label"
-      v-bind="getColumnProps(item.props || {})"
+        v-for="(item, index) in headers"
+        :key="index + '-table-column'"
+        :prop="item.field"
+        :label="item.label"
+        v-bind="getColumnProps(item.props || {})"
     >
       <!--    表头    -->
       <template #header>
         <span
-          v-right-click="dev ? {devId: `headers[${index}]`} : undefined"
-          class="v-header"
+            v-right-click="dev ? {devId: `headers[${index}]`} : undefined"
+            class="v-header"
         >
           {{ item.label }}
           <el-tooltip v-if="item.info" effect="dark" placement="top-start">
-            <i class="el-icon-warning-outline" />
-            <template #content><span v-html="item.info" /></template>
+            <i class="el-icon-warning-outline"/>
+            <template #content><span v-html="item.info"/></template>
           </el-tooltip>
         </span>
       </template>
       <!--    单元格    -->
       <template #default="scope">
         <cell-edit
-          v-if="item.edit"
-          :key="`${index}-${rowKey}`"
-          v-model="scope.row[scope.column.property]"
-          v-bind="{item: item}"
-          @update:modelValue="value => cellChange(scope.index_, item.field, value)"
+            v-if="item.edit"
+            :key="`${index}-${rowKey}`"
+            v-model="scope.row[scope.column.property]"
+            v-bind="{item: item}"
+            @update:modelValue="value => cellChange(scope.index_, item.field, value)"
         />
         <component
-          :is="cellType(item)"
-          v-else
-          v-bind="cellProps(item, scope)"
+            :is="cellType(item)"
+            v-else
+            v-bind="cellProps(item, scope)"
         />
       </template>
     </el-table-column>
     <!--     操作     -->
     <el-table-column
-      v-if="rowButton.length > 0"
-      key="row-action"
-      label="操作"
-      fixed="right"
-      :width="actionWidth"
+        v-if="rowButton.length > 0"
+        key="row-action"
+        label="操作"
+        fixed="right"
+        :width="actionWidth"
     >
       <template #default="scope">
-        <v-button :buttons="makeRowButton(rowButton, scope.row)" prefix-path="normalButton" @action="btnAction" />
+        <v-button :buttons="makeRowButton(rowButton, scope.row)" prefix-path="normalButton" @action="btnAction"/>
       </template>
     </el-table-column>
-    <template #empty> 没有数据 </template>
+    <template #empty> 没有数据</template>
   </el-table>
 </template>
 <script>
@@ -67,11 +67,11 @@ import CellEdit from './cellEdit/index.vue'
 export default {
   name: 'TableStyle',
   components: Object.assign(
-    {
-      VButton,
-      CellEdit
-    },
-    Cells
+      {
+        VButton,
+        CellEdit
+      },
+      Cells
   ),
   inject: ['dev'],
   props: {
@@ -85,7 +85,8 @@ export default {
     },
     props: {
       type: Object,
-      default: _ => {}
+      default: _ => {
+      }
     },
     selection: {
       type: Boolean,
@@ -93,11 +94,13 @@ export default {
     },
     cellType: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     },
     cellProps: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     },
     rowButton: {
       type: Array,
@@ -105,11 +108,13 @@ export default {
     },
     makeRowButton: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     },
     loadChildren: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   emits: ['select-change', 'sort-change', 'cell-change', 'btn-action'],
@@ -143,7 +148,7 @@ export default {
       }
     },
     cellChange(index, field, value) {
-      this.$emit('cell-change', { index, field, value })
+      this.$emit('cell-change', {index, field, value})
     },
     btnAction(btn) {
       this.$emit('btn-action', btn)

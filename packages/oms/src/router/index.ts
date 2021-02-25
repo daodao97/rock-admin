@@ -1,4 +1,5 @@
 import router from './router'
-import './routerGuards'
+import guard from './guard'
 
+guard(router)
 export default router

@@ -1,31 +1,31 @@
 <template>
   <el-input
-    v-model="inputValue"
-    v-mask="mask"
-    :show-word-limit="showWordLimit"
-    :rows="rows"
-    :clearable="clearable"
-    :disabled="disabled"
-    :readonly="readonly"
-    :show-password="showPassword"
-    v-bind="$attrs"
-    :autosize="autosize"
-    @change="change"
-    @focus="focus"
-    @clear="clear"
-    @blur="blur"
-    @input="input"
-    @update:modelValue="updateModel"
+      v-model="inputValue"
+      v-mask="mask"
+      :show-word-limit="showWordLimit"
+      :rows="rows"
+      :clearable="clearable"
+      :disabled="disabled"
+      :readonly="readonly"
+      :show-password="showPassword"
+      v-bind="$attrs"
+      :autosize="autosize"
+      @change="change"
+      @focus="focus"
+      @clear="clear"
+      @blur="blur"
+      @input="input"
+      @update:modelValue="updateModel"
   >
     <template v-if="showCopy" #append>
-      <el-button v-if="showCopy" icon="el-icon-copy-document" @click="copy" />
+      <el-button v-if="showCopy" icon="el-icon-copy-document" @click="copy"/>
     </template>
   </el-input>
 </template>
 
 <script>
 import Inputmask from './inputmask'
-import { copyToClipboard } from '../../utils'
+import {copyToClipboard} from '../../utils'
 
 export default {
   directives: {
@@ -81,13 +81,14 @@ export default {
   },
   watch: {
     modelValue: {
-      handler: function(val) {
+      handler: function (val) {
         this.inputValue = val || ''
       },
       immediate: true
     }
   },
-  created() {},
+  created() {
+  },
   methods: {
     updateModel(val) {
       this.$emit('update:modelValue', val)

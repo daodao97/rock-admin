@@ -1,13 +1,13 @@
 <template>
-  <code-mirror v-model="localValue" :options="{mode: 'application/json', readOnly: disabled}" @update:modelValue="onchange" />
+  <code-mirror v-model="localValue" :options="{mode: 'application/json', readOnly: disabled}" @update:modelValue="onchange"/>
 </template>
 <script>
 import CodeMirror from '../CodeMirror/index.vue'
-import { isString } from '../../utils'
+import {isString} from '../../utils/type'
 
 export default {
   name: 'VJson',
-  components: { CodeMirror },
+  components: {CodeMirror},
   props: {
     modelValue: {
       type: [String, Object, Array],

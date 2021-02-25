@@ -7,14 +7,15 @@ import CellSpan from './span.vue'
 import CellRichText from './rich.jsx'
 import CellIcon from './cellIcon.vue'
 import CellTpl from './tpl.vue'
+
 export default {
-  CellEnum,
-  CellHtml,
-  CellImage,
-  CellJson,
-  CellLink,
-  CellSpan,
-  CellRichText,
-  CellIcon,
-  CellTpl
+    CellEnum,
+    CellHtml,
+    CellImage,
+    CellJson,
+    CellLink,
+    CellSpan,
+    CellRichText,
+    CellIcon,
+    CellTpl
 }

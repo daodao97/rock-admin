@@ -18,7 +18,8 @@ export default {
     },
     props: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     options: {
       type: Array,

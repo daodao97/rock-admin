@@ -1,10 +1,22 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import Index from '../views/login/index.vue'
-import NotFoundPage from '../views/404.vue'
-import Layout from '../layout/index.vue'
-import Dashboard from '../views/dashboard/index.vue'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Dashboard from '../scaffold/dashboard.vue'
+import NotFoundPage from '../scaffold/404.vue'
+import Layout from '../scaffold/layout/index.vue'
+import { OmsRouteMeta } from './types'
+import Login from '../scaffold/Login.vue'
 
-const routes = [
+const NotFoundMeta: OmsRouteMeta = {
+  hidden: true
+}
+
+const NoteFoundRoute: RouteRecordRaw = {
+  path: '/404',
+  component: NotFoundPage,
+  meta: NotFoundMeta,
+  hidden: true
+}
+
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
@@ -14,18 +26,15 @@ const routes = [
         path: 'dashboard',
         name: 'Dashboard',
         component: Dashboard,
-        meta: { title: 'Dashboard', icon: 'el-icon-help' }
+        meta: { title: 'Dashboard', icon: 'el-icon-help', hidden: false }
       }
     ]
   },
+  NoteFoundRoute,
   {
     path: '/login',
-    component: Index,
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: NotFoundPage,
+    component: Login,
+    meta: { title: '用户登录', hidden: true },
     hidden: true
   }
 ]

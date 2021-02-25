@@ -1,10 +1,10 @@
 <template>
   <div class="image-item">
     <el-image
-      :lazy="true"
-      class="cell-image"
-      :src="data"
-      :preview-src-list="[data]"
+        :lazy="true"
+        class="cell-image"
+        :src="data"
+        :preview-src-list="[data]"
     />
   </div>
 </template>
@@ -18,7 +18,8 @@ export default {
     },
     column: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   }
 }
@@ -27,6 +28,7 @@ export default {
 .image-item {
   // 必须要固定高度，因为图片是懒加载的，加载完成后把cell高度撑起的话，会导致操作列高度异常
   height: 55px;
+
   .cell-image {
     max-height: 50px;
     max-width: 50px;

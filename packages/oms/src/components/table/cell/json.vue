@@ -12,11 +12,13 @@ export default {
   props: {
     data: {
       type: [Array, Object],
-      default: () => {}
+      default: () => {
+      }
     },
     column: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   }
 }

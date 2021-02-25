@@ -4,40 +4,41 @@
       {{ item.label || item.field }}
       <el-tooltip v-if="item.info && formOptions.inline" placement="top">
         <template #content>
-          <span v-html="item.info" />
+          <span v-html="item.info"/>
         </template>
-        <i class="el-icon-warning-outline" />
+        <i class="el-icon-warning-outline"/>
       </el-tooltip>
     </template>
     <component
-      :is="getComponentName(item.type)"
-      :key="item.id || ''"
-      ref="ctrl"
-      v-model="localValue"
-      v-bind="getComponentProps(item)"
-      @update:modelValue="onFiledChange"
+        :is="getComponentName(item.type)"
+        :key="item.id || ''"
+        ref="ctrl"
+        v-model="localValue"
+        v-bind="getComponentProps(item)"
+        @update:modelValue="onFiledChange"
     />
     <div v-if="item.info && !formOptions.inline" class="form-item-info">
-      <i class="el-icon-warning-outline" />
-      <span v-html="item.info" />
+      <i class="el-icon-warning-outline"/> <span v-html="item.info"/>
     </div>
   </el-form-item>
 </template>
 <script>
-import { getComponentName, getComponentProps, customFormComps } from './util'
+import {getComponentName, getComponentProps, customFormComps} from './util'
 import _ from 'lodash'
 
 export default {
   name: 'FormItem',
-  components: { ...customFormComps },
+  components: {...customFormComps},
   props: {
     formOptions: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     item: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     modelValue: {
       type: [String, Number, Object, Array, Boolean],
@@ -45,7 +46,8 @@ export default {
     },
     components: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   emits: ['update:modelValue'],
@@ -85,13 +87,14 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .form-item-info {
-    color: #909399;
+.form-item-info {
+  color: #909399;
+  font-size: 12px;
+  line-height: 1.5;
+
+  ::v-deep(*) {
     font-size: 12px;
     line-height: 1.5;
-    ::v-deep(*) {
-      font-size: 12px;
-      line-height: 1.5;
-    }
   }
+}
 </style>

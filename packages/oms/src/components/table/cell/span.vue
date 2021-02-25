@@ -11,7 +11,8 @@ export default {
     },
     column: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   }
 }

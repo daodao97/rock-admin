@@ -1,6 +1,9 @@
-// @ts-ignore
+// eslint-disable-next-line no-unused-vars
+interface String {
+    format(...replacements: string[]): string;
+}
+
 if (!String.prototype.format) {
-  // @ts-ignore
   // eslint-disable-next-line no-extend-native
   String.prototype.format = function() {
     const args = arguments

@@ -1,5 +1,5 @@
 <template>
-  <span v-html="data" />
+  <span v-html="data"/>
 </template>
 <script>
 export default {

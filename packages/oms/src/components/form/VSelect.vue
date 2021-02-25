@@ -1,28 +1,29 @@
 <template>
   <el-select
-    v-model="localValue"
-    :placeholder="placeholder"
-    :loading="loading"
-    :multiple="multiple"
-    :filterable="localFilterable"
-    :multiple-limit="multipleLimit"
-    :allow-create="allowCreate"
-    :remote="remote"
-    :disabled="disabled"
-    :remote-method="kw => _.debounce(search(kw), 20)"
-    @change="onchange"
+      v-model="localValue"
+      :placeholder="placeholder"
+      :loading="loading"
+      :multiple="multiple"
+      :filterable="localFilterable"
+      :multiple-limit="multipleLimit"
+      :allow-create="allowCreate"
+      :remote="remote"
+      :disabled="disabled"
+      :remote-method="kw => _.debounce(search(kw), 20)"
+      @change="onchange"
   >
     <el-option
-      v-for="item in localOptions"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
+        v-for="item in localOptions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
     />
   </el-select>
 </template>
 
 <script>
-import { strVarReplace, isArray } from '../../utils'
+import {isArray} from '../../utils/type'
+import {strVarReplace} from '../../utils/string'
 
 export default {
   name: 'VSelect',
@@ -96,16 +97,16 @@ export default {
       }
       const url = strVarReplace(this.$props.selectApi, this.formData)
       this.loading = true
-      this.$http.request({ method: 'GET', url: url, params: { kw: 11 }})
-        .then(({ payload }) => {
-          this.loading = false
-          if (isArray(payload)) {
-            this.localOptions = payload
-            if (payload.length > 200) {
-              this.$message.warning('搜索结果的条目过多, 可能会造成页面卡顿, 请优化')
+      this.$http.request({method: 'GET', url: url, params: {kw: 11}})
+          .then(({payload}) => {
+            this.loading = false
+            if (isArray(payload)) {
+              this.localOptions = payload
+              if (payload.length > 200) {
+                this.$message.warning('搜索结果的条目过多, 可能会造成页面卡顿, 请优化')
+              }
             }
-          }
-        })
+          })
     }
   }
 }

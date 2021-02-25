@@ -1,60 +1,59 @@
 <template>
   <div v-if="tools" class="json-view-tool">
     <el-tooltip content="复制">
-      <i class="el-icon-copy-document" @click="copy" />
+      <i class="el-icon-copy-document" @click="copy"/>
     </el-tooltip>
   </div>
   <div v-if="visible" :class="['json-view-container',theme,`deep-${currentDeep}`]">
     <div
-      :class="['json-view', length ? 'closeable' : '']"
-      :style="{fontSize:fontSize+'px',lineHeight:lineHeight+'px'}"
+        :class="['json-view', length ? 'closeable' : '']"
+        :style="{fontSize:fontSize+'px',lineHeight:lineHeight+'px'}"
     >
       <!--icon-style-square-->
       <span v-if="length && iconStyle==='square'" class="angle" @click="toggleClose">
-        <i :class="'el-icon-' + (innerclosed ? 'plus': 'minus')" />
+        <i :class="'el-icon-' + (innerclosed ? 'plus': 'minus')"/>
       </span>
       <!--icon-style-circle-->
       <span v-if="length&& iconStyle==='circle'" class="angle" @click="toggleClose">
-        <i :class="'el-icon-' + (innerclosed ? 'circle-plus-outline': 'remove-outline')" />
+        <i :class="'el-icon-' + (innerclosed ? 'circle-plus-outline': 'remove-outline')"/>
       </span>
       <!--icon-style-triangle-->
       <span v-if="length&& iconStyle==='triangle'" class="angle" @click="toggleClose">
-        <i :class="'el-icon-' + (innerclosed ? 'caret-right': 'el-icon-caret-bottom')" />
+        <i :class="'el-icon-' + (innerclosed ? 'caret-right': 'el-icon-caret-bottom')"/>
       </span>
       <div class="content-wrap">
         <p :class="['first-line',length>0?'pointer':'']" @click="toggleClose">
           <span v-if="jsonKey" class="json-key">"{{ jsonKey }}": </span>
           <span v-if="length">{{ prefix }}{{ innerclosed ? ('...' + subfix) : '' }}
-            <span class="json-note">{{ innerclosed ? (length+' items') : '' }}</span>
-          </span>
-          <span v-if="!length">{{ `${isArray ? '[]' : '{}'}${isLast?'':','}` }}</span>
+            <span class="json-note">{{ innerclosed ? (length + ' items') : '' }}</span>
+          </span> <span v-if="!length">{{ `${isArray ? '[]' : '{}'}${isLast ? '' : ','}` }}</span>
         </p>
         <div v-if="!innerclosed && length" class="json-body">
           <template v-for="(item, index) in items" :key="index">
             <json-view
-              v-if="item.isJSON"
-              :closed="isClose()"
-              :data="item.value"
-              :json-key="item.key"
-              :current-deep="templateDeep+1"
-              :deep="deep"
-              :icon-style="iconStyle"
-              :theme="theme"
-              :font-size="fontSize"
-              :line-height="lineHeight"
-              :icon-color="iconColors"
-              :is-last="index === items.length - 1"
-              :has-siblings="item.hasSiblings"
-              :tools="false"
+                v-if="item.isJSON"
+                :closed="isClose()"
+                :data="item.value"
+                :json-key="item.key"
+                :current-deep="templateDeep+1"
+                :deep="deep"
+                :icon-style="iconStyle"
+                :theme="theme"
+                :font-size="fontSize"
+                :line-height="lineHeight"
+                :icon-color="iconColors"
+                :is-last="index === items.length - 1"
+                :has-siblings="item.hasSiblings"
+                :tools="false"
             />
             <p v-else class="json-item">
               <span class="json-key">{{ (isArray ? '' : '"' + item.key + '":') }}</span>
               <span :class="['json-value',getDataType(item.value)]">
-                {{ `${getDataType(item.value)==='string'?'"':''}${item.value}${getDataType(item.value)==='string'?'"':''}${index ===items.length - 1 ? '' : ','}` }}
+                {{ `${getDataType(item.value) === 'string' ? '"' : ''}${item.value}${getDataType(item.value) === 'string' ? '"' : ''}${index === items.length - 1 ? '' : ','}` }}
               </span>
             </p>
           </template>
-          <span v-if="!innerclosed" class="base-line" />
+          <span v-if="!innerclosed" class="base-line"/>
         </div>
         <p v-if="!innerclosed " class="last-line">
           <span>{{ subfix }}</span>
@@ -65,7 +64,7 @@
   </div>
 </template>
 <script>
-import { copyToClipboard } from '../../utils'
+import {copyToClipboard} from '../../utils'
 // https://github.com/zhaoxuhui1122/vue-json-view
 export default {
   name: 'JsonView',
@@ -174,7 +173,7 @@ export default {
       })
     },
     iconColors() {
-      const { theme, iconColor } = this
+      const {theme, iconColor} = this
       if (iconColor.length === 2) {
         return iconColor
       } else {
@@ -226,8 +225,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-    @import "./style/index";
-    @import "./style/on-dark";
-    @import "./style/vs-code";
+@import "./style/index";
+@import "./style/on-dark";
+@import "./style/vs-code";
 </style>
 

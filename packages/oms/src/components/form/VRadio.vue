@@ -1,10 +1,10 @@
 <template>
   <el-radio-group v-model="localValue" :disabled="disabled" @change="onchange">
     <el-radio
-      v-for="(item, index) in options"
-      :key="index + '-radio'"
-      :label="item.value"
-      :disabled="!!item.disabled"
+        v-for="(item, index) in options"
+        :key="index + '-radio'"
+        :label="item.value"
+        :disabled="!!item.disabled"
     >{{ item.label }}
     </el-radio>
   </el-radio-group>

@@ -3,6 +3,7 @@
 </template>
 <script>
 import _ from 'lodash'
+
 export default {
   name: 'CellLink',
   props: {
@@ -12,18 +13,19 @@ export default {
     },
     column: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   computed: {
     linkProps() {
       return _.merge(
-        {
-          type: 'primary',
-          href: this.$props.data,
-          target: '_blank'
-        },
-        this.$props.column.props || {}
+          {
+            type: 'primary',
+            href: this.$props.data,
+            target: '_blank'
+          },
+          this.$props.column.props || {}
       )
     }
   }

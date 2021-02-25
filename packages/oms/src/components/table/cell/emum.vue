@@ -2,7 +2,8 @@
   <el-tag :type="type">{{ getLabel }}</el-tag>
 </template>
 <script>
-import _ from 'lodash'
+import {findIndex} from 'lodash'
+
 export default {
   name: 'CellEnum',
   props: {
@@ -12,20 +13,21 @@ export default {
     },
     column: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   computed: {
     type() {
-      const { column, data } = this.$props
+      const {column, data} = this.$props
       if (column.state !== undefined) {
         return column.state[data] ?? ''
       }
       return ''
     },
     getLabel() {
-      const { column, data } = this.$props
-      const index = _.findIndex(column.options, {
+      const {column, data} = this.$props
+      const index = findIndex(column.options, {
         value: data
       })
       const obj = column.options[index]

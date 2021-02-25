@@ -1,11 +1,11 @@
 <template>
   <v-loading>
-    <router-view :key="key" />
+    <router-view :key="key"/>
   </v-loading>
 </template>
 <script>
 import VLoading from '../components/VLoading.vue'
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 
 export default defineComponent({
   components: {
@@ -17,7 +17,7 @@ export default defineComponent({
     }
   },
   watch: {
-    '$route': function() {
+    '$route': function () {
       this.key++
     }
   }

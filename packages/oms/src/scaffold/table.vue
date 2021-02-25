@@ -1,19 +1,20 @@
 <template>
   <div v-if="showNotice" style="margin: 0 0 20px 0">
-    <el-alert v-bind="notice" />
+    <el-alert v-bind="notice"/>
   </div>
-  <v-table v-bind="tableProps" />
+  <v-table v-bind="tableProps"/>
 </template>
 <script>
 import VTable from '../components/table/index.vue'
-import { isString, isObject } from '../utils'
+import {isString, isObject} from '../utils/type'
+
 export default {
   name: 'TableRender',
-  components: { VTable },
+  components: {VTable},
   data() {
     const token = this.$route.path.split('/')
     const project = token.slice(0, token.length - 1).join('/')
-    const schema = this.$route.meta.pageSchema || { infoApi: project + '/list_schema' }
+    const schema = this.$route.meta.pageSchema || {infoApi: project + '/list_schema'}
     if (schema.listApi === undefined) {
       schema.listApi = project + '/list'
     }

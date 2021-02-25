@@ -1,13 +1,13 @@
 <template>
   <component
-    :is="getComponentName(item.type)"
-    v-model="localValue"
-    v-bind="getComponentProps(item)"
-    @update:modelValue="onFiledChange"
+      :is="getComponentName(item.type)"
+      v-model="localValue"
+      v-bind="getComponentProps(item)"
+      @update:modelValue="onFiledChange"
   />
 </template>
 <script>
-import { customFormComps, getComponentName, getComponentProps } from '../../form/util'
+import {customFormComps, getComponentName, getComponentProps} from '../../form/util'
 
 export default {
   name: 'CellEdit',
@@ -24,7 +24,8 @@ export default {
     },
     item: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   emits: ['update:modelValue'],

@@ -3,24 +3,24 @@
     <el-row v-for="(item, index) in sub" :key="index + '-' + key">
       <el-col class="sub-form-item" :span="repeat ? 22: 24">
         <v-form
-          :ref="'subForm' + index"
-          v-model="sub[index]"
-          :is-sub="true"
-          :options="formOptions"
-          :form-items="$props.formItems"
-          :root-data="getRootData"
-          :dev="dev"
-          @update:modelValue="onchange"
-          @mounted="fApi => subMounted(fApi, index)"
+            :ref="'subForm' + index"
+            v-model="sub[index]"
+            :is-sub="true"
+            :options="formOptions"
+            :form-items="$props.formItems"
+            :root-data="getRootData"
+            :dev="dev"
+            @update:modelValue="onchange"
+            @mounted="fApi => subMounted(fApi, index)"
         />
       </el-col>
       <el-col v-if="repeat" :span="2" class="sub-form-item-action">
         <div>
           <div>
-            <el-button class="action" type="danger" icon="el-icon-minus" circle @click="remove(index)" />
+            <el-button class="action" type="danger" icon="el-icon-minus" circle @click="remove(index)"/>
           </div>
           <div>
-            <el-button v-if="index === sub.length - 1" class="action" type="primary" icon="el-icon-plus" circle @click="push" />
+            <el-button v-if="index === sub.length - 1" class="action" type="primary" icon="el-icon-plus" circle @click="push"/>
           </div>
         </div>
       </el-col>
@@ -28,8 +28,8 @@
   </div>
 </template>
 <script>
-import { defineAsyncComponent } from 'vue'
-import _ from 'lodash'
+import {defineAsyncComponent} from 'vue'
+import {merge, remove} from 'lodash'
 
 export default {
   name: 'VSubForm',
@@ -81,7 +81,7 @@ export default {
       key: 1,
       fApis: [],
       sub: subData,
-      formOptions: _.merge(this.$props.options, {
+      formOptions: merge(this.$props.options, {
         submitButton: false,
         cancelButton: false
       })
@@ -92,7 +92,7 @@ export default {
       this.sub.push({})
     },
     remove(index) {
-      this.sub = _.remove(this.sub, (item, key) => {
+      this.sub = remove(this.sub, (item, key) => {
         return key !== index
       })
       this.key++
@@ -125,16 +125,18 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .sub-form {
-  }
-  .sub-form-item {
-    flex: 1 1 auto;
-    border: 1px dashed #dcdfe6;
-    border-radius: 8px;
-    padding: 20px 10px 10px 10px;
-    margin-bottom: 10px;
-  }
-  .sub-form-item-action {
-    text-align: center;
-  }
+.sub-form {
+}
+
+.sub-form-item {
+  flex: 1 1 auto;
+  border: 1px dashed #dcdfe6;
+  border-radius: 8px;
+  padding: 20px 10px 10px 10px;
+  margin-bottom: 10px;
+}
+
+.sub-form-item-action {
+  text-align: center;
+}
 </style>

@@ -4,7 +4,7 @@
     background-color: #292c33;
 
     .json-view {
-      font-family: Menlo, Consolas, "Courier New", Courier, FreeMono, monospace!important;
+      font-family: Menlo, Consolas, "Courier New", Courier, FreeMono, monospace !important;
 
       .json-note {
         color: #909399;
@@ -18,17 +18,21 @@
 
       .json-value {
         color: #c6937c;
-        &.number{
+
+        &.number {
           color: #bacdab;
         }
-        &.string{
-          color:#c6937c;
+
+        &.string {
+          color: #c6937c;
         }
-        &.boolean{
+
+        &.boolean {
           color: #659bd1;
         }
-        &.null{
-          color: #659bd1 ;
+
+        &.null {
+          color: #659bd1;
         }
       }
 
@@ -45,7 +49,8 @@
       .last-line {
         color: #acb2be;
       }
-      .json-item{
+
+      .json-item {
         color: #acb2be;
       }
     }

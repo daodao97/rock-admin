@@ -1,9 +1,9 @@
 <template>
   <el-checkbox-group v-model="localValue" :max="max" :min="min" @change="onchange">
     <el-checkbox
-      v-for="(item, index) in options"
-      :key="index + '-checkbox'"
-      :label="item.value"
+        v-for="(item, index) in options"
+        :key="index + '-checkbox'"
+        :label="item.value"
     >{{ item.label }}
     </el-checkbox>
   </el-checkbox-group>

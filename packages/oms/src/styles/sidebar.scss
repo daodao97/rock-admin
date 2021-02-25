@@ -106,7 +106,8 @@
           margin-left: 20px;
         }
       }
-      .menu-content{
+
+      .menu-content {
         display: none;
       }
     }
@@ -129,6 +130,7 @@
 
     .el-menu--collapse {
       left: -5px;
+
       .el-submenu {
         & > .el-submenu__title {
           & > span {

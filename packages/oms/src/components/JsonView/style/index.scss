@@ -2,12 +2,15 @@
 .json-view-tool {
   padding-left: 2rem;
 }
+
 .json-view-container {
   background-color: #fff;
-  &.deep-1{
+
+  &.deep-1 {
     // overflow: auto;
     padding-right: 10px;
   }
+
   .json-view {
     position: relative;
     display: block;
@@ -18,6 +21,7 @@
     box-sizing: border-box;
     font-family: Consolas !important;
     cursor: default;
+
     .json-note {
       color: #909399;
       font-size: 12px;
@@ -30,19 +34,23 @@
 
     .json-value {
       display: inline-block;
-      color:#57b73b;
+      color: #57b73b;
       word-break: break-all;
       white-space: normal;
-      &.number{
+
+      &.number {
         color: #2d8cf0;
       }
-      &.string{
-        color:#57b73b;
+
+      &.string {
+        color: #57b73b;
       }
-      &.boolean{
+
+      &.boolean {
         color: #eb3324;
       }
-      &.null{
+
+      &.null {
         color: #eb3324;
       }
     }
@@ -58,7 +66,7 @@
       margin: 0;
 
       &.pointer {
-        cursor: pointer!important;
+        cursor: pointer !important;
       }
     }
 
@@ -74,7 +82,8 @@
         top: 0;
         left: 2px;
 
-        &:hover {}
+        &:hover {
+        }
       }
     }
 

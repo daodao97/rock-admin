@@ -1,34 +1,35 @@
 <template>
   <el-upload
-    ref="upload"
-    :action="action"
-    list-type="picture-card"
-    :limit="limit"
-    :file-list="fileList"
-    :disabled="disabled"
-    :before-upload="beforeUpload"
-    :on-preview="preview"
-    :on-remove="handleRemove"
-    :on-exceed="onExceed"
-    :on-success="onSuccess"
-    :on-error="onError"
-    :headers="headers"
+      ref="upload"
+      :action="action"
+      list-type="picture-card"
+      :limit="limit"
+      :file-list="fileList"
+      :disabled="disabled"
+      :before-upload="beforeUpload"
+      :on-preview="preview"
+      :on-remove="handleRemove"
+      :on-exceed="onExceed"
+      :on-success="onSuccess"
+      :on-error="onError"
+      :headers="headers"
   >
     <template v-if="fileList.length < limit" #default>
-      <i class="el-icon-plus" />
+      <i class="el-icon-plus"/>
     </template>
     <template #tip>
-      <div v-html="tip" />
+      <div v-html="tip"/>
     </template>
   </el-upload>
   <el-dialog v-model="dialogVisible">
-    <el-image :src="dialogImageUrl" lazy />
+    <el-image :src="dialogImageUrl" lazy/>
   </el-dialog>
 </template>
 
 <script>
 import _ from 'lodash'
-import { toArray, checkImgExists } from '../../utils'
+import {toArray, checkImgExists} from '../../utils'
+
 export default {
   props: {
     modelValue: {
@@ -49,12 +50,13 @@ export default {
     },
     headers: {
       type: Object,
-      default: _ => {}
+      default: _ => {
+      }
     },
-    limit: { type: Number, default: 1 },
-    accept: { type: String, default: '' },
-    format: { type: Array, default: _ => [] },
-    maxSize: { type: Number, default: 0 }
+    limit: {type: Number, default: 1},
+    accept: {type: String, default: ''},
+    format: {type: Array, default: _ => []},
+    maxSize: {type: Number, default: 0}
   },
   emits: ['update:modelValue'],
   data() {
@@ -105,8 +107,8 @@ export default {
       this.dialogVisible = true
     },
     beforeUpload(file) {
-      const { format, maxSize } = { format: this.format, maxSize: this.maxSize }
-      const { name, size } = file
+      const {format, maxSize} = {format: this.format, maxSize: this.maxSize}
+      const {name, size} = file
       if (format && format.length > 0 && format.indexOf(name.split('.').reverse()[0]) === -1) {
         this.$message.warning(`格式错误，仅支持后缀名为 ${format.join('、')} 的文件!`)
         return false
@@ -172,19 +174,21 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  ::v-deep(.el-upload--picture-card) {
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-  }
-  ::v-deep(.el-upload-list--picture-card .el-upload-list__item) {
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-  }
-  ::v-deep(.el-upload-list--picture-card .el-upload-list__item-status-label i) {
-    top: -1px;
-    position: absolute;
-    right: 13px;
-  }
+::v-deep(.el-upload--picture-card) {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+}
+
+::v-deep(.el-upload-list--picture-card .el-upload-list__item) {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+}
+
+::v-deep(.el-upload-list--picture-card .el-upload-list__item-status-label i) {
+  top: -1px;
+  position: absolute;
+  right: 13px;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <span v-html="show" />
+  <span v-html="show"/>
 </template>
 <script>
-import { strVarReplace } from '../../../utils'
+import {strVarReplace} from '../../../utils/string'
 
 export default {
   name: 'CellTpl',
@@ -13,11 +13,13 @@ export default {
     },
     column: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     row: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     tpl: {
       type: String,
