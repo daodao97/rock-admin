@@ -1,17 +1,17 @@
-import { UserConfigExport } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-const config : UserConfigExport = {
+export default defineConfig({
+  root: __dirname,
   resolve: {
     alias: {
-      vue: 'vue/dist/vue.esm-bundler.js'
+      vue: 'vue/dist/vue.esm-bundler.js',
+      oms: '../src'
     }
   },
   server: {
     open: true
   },
   plugins: [vue(), vueJsx()]
-}
-
-export default config
+})

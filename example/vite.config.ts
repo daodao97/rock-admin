@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+// @ts-ignore
 import visualizer from 'rollup-plugin-visualizer'
 
 const plugins = [
@@ -33,7 +34,8 @@ export default defineConfig({
       output: {
         manualChunks: (moduleID) => {
           if (moduleID.includes('node_modules')) {
-            return moduleID.match(/node_modules\/([^/]+)/)[1]
+            const m = moduleID.match(/node_modules\/([^/]+)/)
+            return m ? m[1] : undefined
           }
         }
       }
