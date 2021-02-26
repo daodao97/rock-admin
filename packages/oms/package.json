@@ -52,18 +52,18 @@
     "vite": "^2.0.1"
   },
   "files": [
-    "lib/*"
+    "dist/*"
   ],
-  "main": "./lib/oms.umd.js",
-  "module": "./lib/oms.es.js",
-  "style": "./lib/style.css",
+  "main": "./dist/oms.umd.js",
+  "module": "./dist/oms.es.js",
+  "style": "./dist/style.css",
   "exports": {
-    "./style.css": "./lib/style.css",
+    "./style.css": "./dist/style.css",
     ".": {
-      "import": "./lib/oms.es.js",
-      "require": "./lib/oms.umd.js"
+      "import": "./dist/oms.es.js",
+      "require": "./dist/oms.umd.js"
     }
   },
-  "types": "lib/types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "license": "MIT"
 }

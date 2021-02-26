@@ -1,0 +1,24 @@
+{
+  "name": "@oms/create-app",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "create-app": "index.js",
+    "cva": "index.js"
+  },
+  "files": [
+    "index.js",
+    "template-*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "daodao97",
+  "license": "MIT",
+  "dependencies": {
+    "enquirer": "^2.3.6",
+    "kolorist": "^1.2.10",
+    "minimist": "^1.2.5"
+  }
+}

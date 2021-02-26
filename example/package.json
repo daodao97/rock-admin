@@ -1,5 +1,5 @@
 {
-  "name": "oms-example",
+  "name": "oms-app",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

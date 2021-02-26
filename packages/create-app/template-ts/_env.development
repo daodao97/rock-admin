@@ -1,0 +1,5 @@
+ENV = 'development'
+NODE_ENV=development
+
+VITE_APP_ENABLE_MOCK=true
+VITE_APP_BASE_API=/api

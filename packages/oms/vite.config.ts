@@ -18,14 +18,14 @@ const config : UserConfigExport = {
     vueJsx(),
     typescript({
       declaration: true,
-      declarationDir: 'lib/types',
+      declarationDir: 'dist/types',
       rootDir: 'src'
     })
   ]
 }
 
 const build : BuildOptions = {
-  outDir: 'lib',
+  outDir: 'dist',
   lib: {
     entry: resolve(__dirname, 'src/index.ts'),
     name: 'oms',
