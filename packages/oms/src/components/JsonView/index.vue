@@ -63,7 +63,7 @@
 
   </div>
 </template>
-<script>
+<script lang="ts">
 import {copyToClipboard} from '../../utils'
 // https://github.com/zhaoxuhui1122/vue-json-view
 export default {

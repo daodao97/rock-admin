@@ -23,7 +23,7 @@
   </el-input>
 </template>
 
-<script>
+<script lang="ts">
 import Inputmask from './inputmask'
 import {copyToClipboard} from '../../utils'
 

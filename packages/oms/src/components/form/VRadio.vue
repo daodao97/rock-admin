@@ -9,7 +9,7 @@
     </el-radio>
   </el-radio-group>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'VRadio',
   props: {

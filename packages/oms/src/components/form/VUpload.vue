@@ -26,7 +26,7 @@
   </el-dialog>
 </template>
 
-<script>
+<script lang="ts">
 import _ from 'lodash'
 import {toArray, checkImgExists} from '../../utils'
 

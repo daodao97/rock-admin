@@ -1,10 +1,10 @@
 <template>
   <!--右键菜单-->
   <div
-      v-show="status"
-      id="rightMenuDom"
-      class="right-menu"
-      :style="{
+    v-show="status"
+    id="rightMenuDom"
+    class="right-menu"
+    :style="{
       top: top,
       left: left
     }"
@@ -17,10 +17,10 @@
             <li>
               <ul class="el-select-group">
                 <li
-                    v-for="(item, index) in menus"
-                    :key="'btn-' + index"
-                    class="el-select-dropdown__item"
-                    @click="() => onclick(item.handler)"
+                  v-for="(item, index) in menus"
+                  :key="'btn-' + index"
+                  class="el-select-dropdown__item"
+                  @click="() => onclick(item.handler)"
                 >
                   <span>{{ item.text }}</span>
                 </li>
@@ -30,16 +30,17 @@
         </ul>
       </div>
       <div class="el-scrollbar__bar is-horizontal" style="display: none;">
-        <div class="el-scrollbar__thumb" style="transform: translateX(0%);"/>
+        <div class="el-scrollbar__thumb" style="transform: translateX(0%);" />
       </div>
       <div class="el-scrollbar__bar is-vertical el-scrollbar-fade-enter-to" style="display: none;">
-        <div class="el-scrollbar__thumb" style="transform: translateY(0%); height: 91.3333%;"/>
+        <div class="el-scrollbar__thumb" style="transform: translateY(0%); height: 91.3333%;" />
       </div>
     </div>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
   name: 'RightMenu',
   props: {
     status: {
@@ -64,7 +65,7 @@ export default {
       callback()
     }
   }
-}
+})
 </script>
 <style scoped lang="scss">
 // 右键菜单样式

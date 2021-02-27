@@ -37,7 +37,7 @@
     </template>
   </span>
 </template>
-<script>
+<script lang="ts">
 import Base from './mixin'
 import {strVarReplace} from '../../utils/string'
 

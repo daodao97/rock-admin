@@ -6,7 +6,7 @@
     <pre>{{ JSON.stringify(data, null, 2) }}</pre>
   </el-popover>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'CellJson',
   props: {

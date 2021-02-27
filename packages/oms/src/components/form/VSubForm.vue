@@ -27,7 +27,7 @@
     </el-row>
   </div>
 </template>
-<script>
+<script lang="ts">
 import {defineAsyncComponent} from 'vue'
 import {merge, remove} from 'lodash'
 

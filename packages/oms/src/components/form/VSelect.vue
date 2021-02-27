@@ -21,7 +21,7 @@
   </el-select>
 </template>
 
-<script>
+<script lang="ts">
 import {isArray} from '../../utils/type'
 import {strVarReplace} from '../../utils/string'
 

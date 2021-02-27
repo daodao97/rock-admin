@@ -106,16 +106,13 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      await this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
     getSetting(name) {
       return this.$store.state.settings[name]
     },
     async closeNavBarNotice() {
-      await this.$store.dispatch('settings/changeSetting', {
-        key: 'closeNavNotice',
-        value: true
-      })
+      await this.$store.commit('settings/updateSettings', {closeNavNotice: true})
       this.closeNotice(this.getSetting('navBarNotice'))
     },
     showPopover() {

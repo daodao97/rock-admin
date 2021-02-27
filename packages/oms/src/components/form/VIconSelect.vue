@@ -22,7 +22,7 @@
     </el-scrollbar>
   </el-popover>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'VIconSelect',
   props: {

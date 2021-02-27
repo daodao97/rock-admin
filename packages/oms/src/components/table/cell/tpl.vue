@@ -1,7 +1,7 @@
 <template>
   <span v-html="show"/>
 </template>
-<script>
+<script lang="ts">
 import {strVarReplace} from '../../../utils/string'
 
 export default {

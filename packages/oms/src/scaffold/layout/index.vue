@@ -1,27 +1,27 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div
-        v-if="device === 'mobile' && sidebar.opened"
-        class="drawer-bg"
-        @click="handleClickOutside"
+      v-if="device === 'mobile' && sidebar.opened"
+      class="drawer-bg"
+      @click="handleClickOutside"
     />
-    <sidebar class="sidebar-container"/>
+    <sidebar class="sidebar-container" />
     <div class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
-        <navbar/>
+        <navbar />
       </div>
-      <app-main/>
+      <app-main />
     </div>
   </div>
 </template>
 
 <script>
-import {Navbar, Sidebar, AppMain} from './components'
-import {addListener, removeListener} from 'resize-detector'
+import { Navbar, Sidebar, AppMain } from './components'
+import { addListener, removeListener } from 'resize-detector'
 
-const {body} = document
+const { body } = document
 const WIDTH = 992 // refer to Bootstrap's responsive design
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Layout',
@@ -57,7 +57,7 @@ export default defineComponent({
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', {withoutAnimation: false})
+      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
     },
     isMobile() {
       const rect = body.getBoundingClientRect()
@@ -69,7 +69,7 @@ export default defineComponent({
         this.$store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
 
         if (isMobile) {
-          this.$store.dispatch('app/closeSideBar', {withoutAnimation: true})
+          this.$store.dispatch('app/closeSideBar', { withoutAnimation: true })
         }
       }
     }

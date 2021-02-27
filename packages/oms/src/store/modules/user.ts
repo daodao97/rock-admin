@@ -4,8 +4,7 @@ import { LoginForm, LoginTicket, LoginResponse } from '../../types'
 import { ApiResponse } from '../../utils/request/types'
 import { getToken, setToken, removeToken } from '../../utils/token'
 import { RemoteModule } from '../../types'
-import { getObjectNodeByKeyTree } from '../../utils/object'
-import { cloneDeep, merge } from 'lodash'
+import { RouteRecordRaw } from 'vue-router'
 
 export const user: User = {
   name: '',
@@ -15,13 +14,6 @@ export const user: User = {
   remoteRouter: [],
   isLodeRemoteRoutes: false,
   resource: []
-}
-
-interface base {
-    id: number,
-    routes: any[],
-    page_schema: Record<string, any>,
-    children: any[]
 }
 
 const userModule: Module<User, any> = {
@@ -39,6 +31,9 @@ const userModule: Module<User, any> = {
     updateRemoteRouter(state: User, routes: RemoteModule[]) {
       state.remoteRouter = routes
       state.isLodeRemoteRoutes = true
+    },
+    setCustomRoutes(state: User, routes: RouteRecordRaw[]) {
+      state.customRouter = state.customRouter.concat(routes)
     }
   },
   actions: {

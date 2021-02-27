@@ -21,7 +21,7 @@ function regRoutes(routes: RouteRecordRaw[] = []) {
   routes.forEach(item => {
     router.addRoute(item)
   })
-  // store.dispatch('user/setCustomRoutes', routes)
+  store.commit('user/setCustomRoutes', routes)
 }
 
 function regUse(app: App, use: any[]) {

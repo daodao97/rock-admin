@@ -1,3 +1,7 @@
+interface Props {
+  name: string
+}
+
 export default {
   name: 'VIcon',
   props: {
@@ -6,7 +10,7 @@ export default {
       required: true
     }
   },
-  setup(props: { name: string | undefined }) {
+  setup(props: Props) {
     if (props.name === undefined) {
       return ''
     }

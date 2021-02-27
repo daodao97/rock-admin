@@ -1,7 +1,7 @@
 <template>
-  <v-icon :name="data"/>
+  <v-icon :name="data" />
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'CellIcon',
   props: {

@@ -1,5 +1,4 @@
 import { ActionContext, Module } from 'vuex'
-import { merge } from 'lodash'
 import { App, PageSchema, Sidebar } from '../types'
 import Cookies from 'js-cookie'
 

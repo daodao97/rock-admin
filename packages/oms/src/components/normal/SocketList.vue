@@ -9,7 +9,7 @@
   </el-scrollbar>
 </template>
 
-<script>
+<script lang="ts">
 import {showEleByClassName} from '../../utils'
 
 let buffer = []

@@ -2,7 +2,7 @@
   <span class="v-btn">
     <template v-if="shape === 'icon' && props && props.icon">
       <div class="el-btn-icon" @click="onclick">
-        <v-icon :name="props.icon || 'el-icon-warning-outline'"/>
+        <v-icon :name="props.icon || 'el-icon-warning-outline'" />
       </div>
     </template>
     <template v-else>
@@ -10,28 +10,28 @@
         {{ text }}
       </el-button>
       <template v-else>
-        <el-button v-bind="props" @click="onclick"/>
+        <el-button v-bind="props" @click="onclick" />
       </template>
     </template>
     <template v-if="showContainer">
       <component
-          :is="'el-' + container"
-          v-model="showContainer"
-          v-bind="getContainerProps()"
+        :is="'el-' + container"
+        v-model="showContainer"
+        v-bind="getContainerProps()"
       >
         <slot>
           <component
-              :is="getSubComp()"
-              v-bind="getSubProps()"
-              v-on="getSubEvent()"
+            :is="getSubComp()"
+            v-bind="getSubProps()"
+            v-on="getSubEvent()"
           />
         </slot>
       </component>
     </template>
   </span>
 </template>
-<script>
-import {strVarReplace} from '../../utils/string'
+<script lang="ts">
+import { strVarReplace } from '../../utils/string'
 import Base from './mixin'
 
 export default {

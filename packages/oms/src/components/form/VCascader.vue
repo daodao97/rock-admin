@@ -12,7 +12,7 @@
       @change="onchange"
   />
 </template>
-<script>
+<script lang="ts">
 import {searchTreeValues} from '../../utils'
 import {isNumber} from '../../utils/type'
 import _ from 'lodash'

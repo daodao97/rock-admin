@@ -8,7 +8,7 @@
     </el-checkbox>
   </el-checkbox-group>
 </template>
-<script>
+<script lang="ts">
 
 export default {
   name: 'VCheckbox',

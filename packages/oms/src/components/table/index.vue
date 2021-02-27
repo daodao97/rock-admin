@@ -3,17 +3,17 @@
   <el-card v-if="showFilter && showFilterCard" shadow="never" class="table-filter">
     <slot name="filter">
       <v-form
-          v-if="tableFilter.length > 0"
-          :key="formKey"
-          ref="filter"
-          v-model="filterForm"
-          :dev="dev"
-          class="filter-form"
-          prefix-path="filter"
-          :options="filterFormOptions"
-          :form-items="tableFilter"
-          @submit="searchAction"
-          @reset="resetFilter"
+        v-if="tableFilter.length > 0"
+        :key="formKey"
+        ref="filter"
+        v-model="filterForm"
+        :dev="dev"
+        class="filter-form"
+        prefix-path="filter"
+        :options="filterFormOptions"
+        :form-items="tableFilter"
+        @submit="searchAction"
+        @reset="resetFilter"
       />
     </slot>
   </el-card>
@@ -21,14 +21,14 @@
   <slot name="action">
     <el-row :gutter="20" style="margin-bottom: 20px">
       <el-col :span="batchButtonCol">
-        <v-button :buttons="makeBatchButton(tableBatchButton)" prefix-path="batchButton"/>
+        <v-button :buttons="makeBatchButton(tableBatchButton)" prefix-path="batchButton" />
         <div v-if="tableBatchButton.length > 0 && selectedInfoPosition === 'afterBatchButton'" class="selected-info">
-          <span v-html="selectedInfo"/>
+          <span v-html="selectedInfo" />
         </div>
       </el-col>
       <el-col :span="24 - batchButtonCol" class="normal-button">
-        <v-button :buttons="makeNormalButton(tableNormalButton)" prefix-path="normalButton"/>
-        <export-add-button v-if="tableExportAble" :get-info="getExportInfo"/>
+        <v-button :buttons="makeNormalButton(tableNormalButton)" prefix-path="normalButton" />
+        <export-add-button v-if="tableExportAble" :get-info="getExportInfo" />
       </el-col>
     </el-row>
   </slot>
@@ -37,62 +37,62 @@
     <el-tab-pane v-for="(item, index) in tableTabs" :key="index+'-pane'" :label="item.label" :name="item.value + ''" :lazy="true">
       <slot name="table">
         <table-style
-            v-loading="loading"
-            :headers="tableHeaders"
-            :data-list="tableList"
-            :props="tableTableProps"
-            :selection="tableBatchButton.length > 0"
-            :cell-type="cellType"
-            :cell-props="cellProps"
-            :row-button="tableRowButton"
-            :make-row-button="makeRowButton"
-            :load-children="loadChildren"
-            @select-change="handleSelectionChange"
-            @sort-change="sortTable"
-            @cell-change="cellChange"
-            @btn-action="btnAction"
+          v-loading="loading"
+          :headers="tableHeaders"
+          :data-list="tableList"
+          :props="tableTableProps"
+          :selection="tableBatchButton.length > 0"
+          :cell-type="cellType"
+          :cell-props="cellProps"
+          :row-button="tableRowButton"
+          :make-row-button="makeRowButton"
+          :load-children="loadChildren"
+          @select-change="handleSelectionChange"
+          @sort-change="sortTable"
+          @cell-change="cellChange"
+          @btn-action="btnAction"
         />
       </slot>
     </el-tab-pane>
   </el-tabs>
   <slot v-else name="table">
     <table-style
-        v-loading="loading"
-        :headers="tableHeaders"
-        :data-list="tableList"
-        :props="tableTableProps"
-        :selection="tableBatchButton.length > 0"
-        :cell-type="cellType"
-        :cell-props="cellProps"
-        :row-button="tableRowButton"
-        :make-row-button="makeRowButton"
-        :load-children="loadChildren"
-        @select-change="handleSelectionChange"
-        @sort-change="sortTable"
-        @cell-change="cellChange"
-        @btn-action="btnAction"
+      v-loading="loading"
+      :headers="tableHeaders"
+      :data-list="tableList"
+      :props="tableTableProps"
+      :selection="tableBatchButton.length > 0"
+      :cell-type="cellType"
+      :cell-props="cellProps"
+      :row-button="tableRowButton"
+      :make-row-button="makeRowButton"
+      :load-children="loadChildren"
+      @select-change="handleSelectionChange"
+      @sort-change="sortTable"
+      @cell-change="cellChange"
+      @btn-action="btnAction"
     />
   </slot>
   <el-button v-if="listIncreaseConf.state && listIncreaseConf.location === 'afterList'" class="list-incr-button" @click="listIncreaseRecord">添加</el-button>
   <el-row style="display: flex">
     <el-col :span="12" style="min-height: 15px">
       <div v-if="tableBatchButton.length > 0 && selectedInfoPosition === 'beforePagination'" class="selected-info">
-        <span v-html="selectedInfo"/>
+        <span v-html="selectedInfo" />
       </div>
     </el-col>
     <el-col :span="12">
       <slot name="page">
         <div v-if="tableShowPagination" class="table-pagination">
           <el-pagination
-              :key="paginationKey"
-              background
-              :page-size="page.pageSize"
-              :page-sizes="page.sizes"
-              :current-page="page.currentPage"
-              layout="total, sizes, prev, pager, next"
-              :total="page.total"
-              @size-change="pageSizesChange"
-              @current-change="(page) => currentPageChange(page)"
+            :key="paginationKey"
+            background
+            :page-size="page.pageSize"
+            :page-sizes="page.sizes"
+            :current-page="page.currentPage"
+            layout="total, sizes, prev, pager, next"
+            :total="page.total"
+            @size-change="pageSizesChange"
+            @current-change="(page) => currentPageChange(page)"
           />
         </div>
       </slot>
@@ -100,18 +100,18 @@
   </el-row>
 </template>
 
-<script>
+<script lang="ts">
 import VForm from '../form/index.vue'
 import VButton from '../button/index.vue'
-import {ruleCompute} from '../../utils'
-import {setUrlParams} from '../../utils/url'
-import {firstUpperCase, strVarReplace} from '../../utils/string'
-import {isBool, isObject, isArray} from '../../utils/type'
-import {getPageTitle} from './lib'
+import { ruleCompute } from '../../utils'
+import { setUrlParams } from '../../utils/url'
+import { firstUpperCase, strVarReplace } from '../../utils/string'
+import { isBool, isObject, isArray } from '../../utils/type'
+import { getPageTitle } from './lib'
 import pipe from '../../utils/pipe'
 import ExportAddButton from './export/index.vue'
 import TableStyle from './tableSytle.vue'
-import {cloneDeep} from 'lodash'
+import { cloneDeep } from 'lodash'
 
 export default {
   name: 'VTable',
@@ -321,25 +321,25 @@ export default {
   beforeCreate() {
     if (this.$props.infoApi) {
       this.$http
-          .request({method: 'GET', url: this.$props.infoApi})
-          .then(({payload}) => {
-            Object.keys(payload).forEach(key => {
-                  if (key === 'tableProps') {
-                    this['table' + firstUpperCase(key)] = Object.assign({}, this.tableDefaultProps, payload[key])
-                  } else {
-                    this['table' + firstUpperCase(key)] = payload[key]
-                  }
-                }
-            )
-            let activeTab = ''
-            if (this.tableTabs.length > 0) {
-              activeTab = this.tableTabs[0].value
+        .request({ method: 'GET', url: this.$props.infoApi })
+        .then(({ payload }) => {
+          Object.keys(payload).forEach(key => {
+            if (key === 'tableProps') {
+              this['table' + firstUpperCase(key)] = Object.assign({}, this.tableDefaultProps, payload[key])
+            } else {
+              this['table' + firstUpperCase(key)] = payload[key]
             }
-            if (this.$route && this.$route.query.tab) {
-              activeTab = this.$route.query.tab
-            }
-            this.activeTab = activeTab + ''
-          })
+          }
+          )
+          let activeTab = ''
+          if (this.tableTabs.length > 0) {
+            activeTab = this.tableTabs[0].value
+          }
+          if (this.$route && this.$route.query.tab) {
+            activeTab = this.$route.query.tab
+          }
+          this.activeTab = activeTab + ''
+        })
     }
   },
   mounted() {
@@ -383,7 +383,7 @@ export default {
     searchAction() {
       const available = this.getAvailableFilter()
       if (Object.keys(available).length === 0) {
-        this.$message({message: '请填写筛选条件', type: 'warning'})
+        this.$message({ message: '请填写筛选条件', type: 'warning' })
         return
       }
       this.load()
@@ -402,33 +402,33 @@ export default {
         _size: this.page.pageSize
       }
       const params = Object.assign(
-          {},
-          filter,
-          page,
-          this.sort,
-          extraPrams,
-          this.$route ? this.$route.params : {},
-          this.activeTab ? {tab: this.activeTab} : {}
+        {},
+        filter,
+        page,
+        this.sort,
+        extraPrams,
+        this.$route ? this.$route.params : {},
+        this.activeTab ? { tab: this.activeTab } : {}
       )
       this.$http
-          .request({
-            type: 'GET',
-            url: this.listApi,
-            params: params
-          })
-          .then(({payload}) => {
-            this.tableList = payload.list
-            this.page = Object.assign(this.page, payload.page || {})
-            this.loading = false
-            setUrlParams(filter)
-          })
+        .request({
+          type: 'GET',
+          url: this.listApi,
+          params: params
+        })
+        .then(({ payload }) => {
+          this.tableList = payload.list
+          this.page = Object.assign(this.page, payload.page || {})
+          this.loading = false
+          setUrlParams(filter)
+        })
     },
     handleSelectionChange(rows) {
       this.selectionRows = rows
     },
     batchButtonPreCheck() {
       if (this.selectionRows.length === 0) {
-        this.$message({message: '请勾选相应记录', type: 'warning'})
+        this.$message({ message: '请勾选相应记录', type: 'warning' })
         return false
       }
       return true
@@ -448,7 +448,7 @@ export default {
         return
       }
       this.page.currentPage = currentPage
-      this.load({resetPage: false})
+      this.load({ resetPage: false })
       // window.scrollTo({ top: 0, behavior: 'smooth' })
     },
     isArray(tmp) {
@@ -509,16 +509,16 @@ export default {
       this.rowKey++
     },
     cellChange(index, field, value) {
-      this.$emit('cell-change', {index, field, value})
+      this.$emit('cell-change', { index, field, value })
     },
     getColumnProps(props) {
       return {
         sortable: props.sortable ? 'custom' : false
       }
     },
-    sortTable({column, order, prop}) {
+    sortTable({ column, order, prop }) {
       if (order && prop) {
-        this.sort = {_sort_by: prop, _sort_type: order === 'descending' ? 'desc' : 'asc'}
+        this.sort = { _sort_by: prop, _sort_type: order === 'descending' ? 'desc' : 'asc' }
       } else {
         this.sort = null
       }
@@ -526,14 +526,14 @@ export default {
     },
     loadChildren(row, treeNode, resolve) {
       this.$http
-          .request({
-            type: 'GET',
-            url: this.listApi,
-            params: {pid: row.id}
-          })
-          .then(({payload}) => {
-            resolve(payload.list || [])
-          })
+        .request({
+          type: 'GET',
+          url: this.listApi,
+          params: { pid: row.id }
+        })
+        .then(({ payload }) => {
+          resolve(payload.list || [])
+        })
     },
     btnAction() {
       this.load()

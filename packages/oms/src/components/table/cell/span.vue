@@ -1,7 +1,7 @@
 <template>
   <span>{{ data }}</span>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'CellSpan',
   props: {

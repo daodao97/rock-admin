@@ -12,7 +12,7 @@
     <v-button v-else v-right-click="{devId: `${prefixPath}[${index}]`}" v-bind="item" @click="onclick" @action="onaction"/>
   </template>
 </template>
-<script>
+<script lang="ts">
 import VButton from './VButton.vue'
 import VButtonGroup from './VButtonGroup.vue'
 import {isArray} from '../../utils/type'

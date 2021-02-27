@@ -12,6 +12,7 @@ import store from './store'
 import 'normalize.css/normalize.css'
 import './styles/index.scss'
 import router from './router'
+import { isDevMode } from './utils/env'
 
 export function createAdmin(omsOptions?: OmsOptions) {
   const options = merge(defaultOptions, omsOptions)
@@ -28,5 +29,8 @@ export function createAdmin(omsOptions?: OmsOptions) {
   const http = instance(options.axios)
   store.dispatch('setHttp', http).then()
   app.config.globalProperties.$http = http
+  if (isDevMode()) {
+    window.App = app
+  }
   router.isReady().then(() => app.mount('#app'))
 }

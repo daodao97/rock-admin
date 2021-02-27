@@ -2,7 +2,7 @@
   <div v-if="!item.hidden" class="menu-wrapper">
     <!-- 没有子菜单 -->
     <template
-        v-if="
+      v-if="
         hasOneShowingChild(item.children, item) &&
           (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
           !item.alwaysShow
@@ -10,36 +10,36 @@
     >
       <app-link v-if="onlyOneChild.meta" :to="to" :new-tab="onlyOneChild.meta.newTab">
         <el-menu-item
-            :index="to"
-            :class="{ 'submenu-title-noDropdown': !isNest }"
+          :index="to"
+          :class="{ 'submenu-title-noDropdown': !isNest }"
         >
-          <menu-content :meta="onlyOneChild.meta"/>
+          <menu-content :meta="onlyOneChild.meta" />
         </el-menu-item>
       </app-link>
     </template>
     <!-- 有子菜单 -->
     <el-submenu
-        v-else
-        ref="subMenu"
-        :index="to"
-        popper-append-to-body
+      v-else
+      ref="subMenu"
+      :index="to"
+      popper-append-to-body
     >
       <template #title>
         <app-link
-            v-if="item.redirect && item.redirect !== '#'"
-            :to="to"
+          v-if="item.redirect && item.redirect !== '#'"
+          :to="to"
         >
-          <menu-content :meta="item.meta"/>
+          <menu-content :meta="item.meta" />
         </app-link>
-        <menu-content v-else :meta="item.meta"/>
+        <menu-content v-else :meta="item.meta" />
       </template>
       <sidebar-item
-          v-for="child in item.children"
-          :key="child.path"
-          :is-nest="true"
-          :item="child"
-          :to="$router.resolve(child.redirect ? child.redirect : child).fullPath"
-          class="nest-menu"
+        v-for="child in item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        :to="$router.resolve(child.redirect ? child.redirect : child).fullPath"
+        class="nest-menu"
       />
     </el-submenu>
   </div>
@@ -96,7 +96,7 @@ export default {
 
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
-        this.onlyOneChild = {...parent, path: '', noShowingChildren: true}
+        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
       }
 

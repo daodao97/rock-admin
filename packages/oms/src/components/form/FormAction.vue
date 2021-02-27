@@ -16,7 +16,7 @@
     </el-button>
   </el-form-item>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'FormAction',
   props: {

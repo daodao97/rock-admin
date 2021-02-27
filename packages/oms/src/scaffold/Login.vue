@@ -6,78 +6,78 @@
       </div>
       <div class="login-body">
         <el-form
-            v-show="loginType === 'local'"
-            ref="loginForm"
-            :model="loginForm"
-            :rules="loginRules"
-            auto-complete="on"
-            label-position="left"
+          v-show="loginType === 'local'"
+          ref="loginForm"
+          :model="loginForm"
+          :rules="loginRules"
+          auto-complete="on"
+          label-position="left"
         >
           <el-form-item prop="username">
             <span class="svg-container">
-              <v-icon name="user"/>
+              <v-icon name="user" />
             </span>
             <el-input
-                ref="username"
-                v-model="loginForm.username"
-                placeholder="Username"
-                name="username"
-                type="text"
-                tabindex="1"
-                auto-complete="on"
+              ref="username"
+              v-model="loginForm.username"
+              placeholder="Username"
+              name="username"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
             />
           </el-form-item>
           <el-form-item prop="password">
             <span class="svg-container">
-              <v-icon name="password"/>
+              <v-icon name="password" />
             </span>
             <el-input
-                :key="passwordType"
-                ref="password"
-                v-model="loginForm.password"
-                :type="passwordType"
-                placeholder="Password"
-                name="password"
-                tabindex="2"
-                auto-complete="on"
-                @keyup.enter="handleLogin"
+              :key="passwordType"
+              ref="password"
+              v-model="loginForm.password"
+              :type="passwordType"
+              placeholder="Password"
+              name="password"
+              tabindex="2"
+              auto-complete="on"
+              @keyup.enter="handleLogin"
             />
             <span class="show-pwd" @click="showPwd">
-              <v-icon :name="passwordType === 'password' ? 'not-visible' : 'visible'"/>
+              <v-icon :name="passwordType === 'password' ? 'not-visible' : 'visible'" />
             </span>
           </el-form-item>
           <el-button
-              :loading="loading"
-              type="primary"
-              style="width:100%;margin-bottom:30px;"
-              @click.prevent="handleLogin"
+            :loading="loading"
+            type="primary"
+            style="width:100%;margin-bottom:30px;"
+            @click.prevent="handleLogin"
           >Login
           </el-button>
           <div class="tips">
-            <span v-html="$store.state.settings.loginTips"/>
+            <span v-html="$store.state.settings.loginTips" />
           </div>
         </el-form>
         <div v-show="['dingTalk', 'wechat'].indexOf(loginType) !== -1">
-          <div id="sso-qrcode" class="qrcode"/>
+          <div id="sso-qrcode" class="qrcode" />
         </div>
       </div>
       <div class="sso">
         <div
-            v-if="loginType !== 'local'"
-            class="sso-item"
-            @click="loginType = 'local'"
+          v-if="loginType !== 'local'"
+          class="sso-item"
+          @click="loginType = 'local'"
         >
           <span>账号</span>
-          <v-icon name="zhongjianren"/>
+          <v-icon name="zhongjianren" />
         </div>
         <div
-            v-for="(item, index) in sso"
-            :key="index"
-            class="sso-item"
-            @click="changLoginChannel(item)"
+          v-for="(item, index) in sso"
+          :key="index"
+          class="sso-item"
+          @click="changLoginChannel(item)"
         >
           <span>{{ item.title }}</span>
-          <v-icon :name="item.icon"/>
+          <v-icon :name="item.icon" />
         </div>
       </div>
     </div>
@@ -105,10 +105,10 @@ export default {
       },
       loginRules: {
         username: [
-          {required: true, trigger: 'blur'}
+          { required: true, trigger: 'blur' }
         ],
         password: [
-          {required: true, trigger: 'blur', validator: validatePassword}
+          { required: true, trigger: 'blur', validator: validatePassword }
         ]
       },
       loading: false,
@@ -125,7 +125,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -147,14 +147,14 @@ export default {
         if (valid) {
           this.loading = true
           this.$store
-              .dispatch('user/login', this.loginForm)
-              .then(() => {
-                this.$router.push({path: this.redirect || '/'})
-                this.loading = false
-              })
-              .catch(() => {
-                this.loading = false
-              })
+            .dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/' })
+              this.loading = false
+            })
+            .catch(() => {
+              this.loading = false
+            })
         } else {
           this.$message.error('表单错误')
           return false
@@ -169,16 +169,16 @@ export default {
       const redirect_url =
           location.origin + location.pathname + '#' + (this.$route.params.redirect || '')
       const params = Object.assign(
-          {},
-          {
-            elId: 'sso-qrcode',
-            redirect_uri: redirect_url,
-            iframe: {
-              width: '280px',
-              height: '320px'
-            }
-          },
-          sso
+        {},
+        {
+          elId: 'sso-qrcode',
+          redirect_uri: redirect_url,
+          iframe: {
+            width: '280px',
+            height: '320px'
+          }
+        },
+        sso
       )
 
       if (this.loginType === 'dingTalk') {

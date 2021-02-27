@@ -1,9 +1,13 @@
 <template>
   <el-tag :type="type">{{ getLabel }}</el-tag>
 </template>
-<script>
-import {findIndex} from 'lodash'
-
+<script lang="ts">
+import { findIndex } from 'lodash'
+import { computed, toRefs } from 'vue'
+interface Props {
+  data: string | number,
+  column: Record<string, any>
+}
 export default {
   name: 'CellEnum',
   props: {
@@ -17,22 +21,22 @@ export default {
       }
     }
   },
-  computed: {
-    type() {
-      const {column, data} = this.$props
+  setup(props: Props) {
+    const { column, data } = toRefs(props)
+    const type = computed(() => {
       if (column.state !== undefined) {
         return column.state[data] ?? ''
       }
       return ''
-    },
-    getLabel() {
-      const {column, data} = this.$props
+    })
+    const getLabel = computed(() => {
       const index = findIndex(column.options, {
         value: data
       })
       const obj = column.options[index]
       return obj ? obj.label : data
-    }
+    })
+    return { type, getLabel }
   }
 }
 </script>

@@ -1,9 +1,13 @@
 import { AxiosRequestConfig } from 'axios'
 import { InstallOptions } from 'element-plus/es/utils/config'
-import { RouteRecordRaw, stringifyQuery } from 'vue-router'
-import { Component, Directive } from '@vue/runtime-core'
+import { RouteRecordRaw } from 'vue-router'
+import { Component, Directive, Plugin } from '@vue/runtime-core'
 import { Module } from 'vuex'
 import { MockApi } from './mock/types'
+
+export interface Button {
+
+}
 
 export interface Sso {
 }
@@ -28,8 +32,10 @@ export interface Settings {
     tokenExpire?: number
 }
 
+type UsePlugin = Plugin | [Plugin, any]
+
 export interface OmsPlugin {
-    use?: any[],
+    use?: UsePlugin[],
     components?: Record<string, Component>,
     directives?: Record<string, Directive>,
     mockApis?: MockApi[],

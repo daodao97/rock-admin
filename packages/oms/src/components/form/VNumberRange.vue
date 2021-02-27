@@ -21,7 +21,7 @@
   > <span v-if="unit" class="el-range-separator">{{ unit }}</span>
   </div>
 </template>
-<script>
+<script lang="ts">
 import {isArray} from '../../utils/type'
 
 export default {

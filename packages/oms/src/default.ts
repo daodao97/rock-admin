@@ -4,7 +4,7 @@ import { OmsOptions } from './types'
 import { Settings } from './types'
 
 const defaultAxios: AxiosRequestConfig = {
-  // baseURL: '/api',
+  baseURL: '/api',
   withCredentials: true,
   timeout: 5000
 }

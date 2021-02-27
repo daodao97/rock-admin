@@ -1,7 +1,7 @@
 <template>
   <el-link v-bind="linkProps">{{ column.label }}</el-link>
 </template>
-<script>
+<script lang="ts">
 import _ from 'lodash'
 
 export default {

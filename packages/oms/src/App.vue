@@ -2,14 +2,14 @@
   <router-view :key="$route.fullPath" v-slot="{ Component }">
     <transition name="router-fade" mode="out-in">
       <keep-alive>
-        <component :is="Component"/>
+        <component :is="Component" />
       </keep-alive>
     </transition>
   </router-view>
 </template>
 
 <script>
-import {addNewStyle} from './utils'
+import { addNewStyle } from './utils'
 
 export default {
   name: 'App',

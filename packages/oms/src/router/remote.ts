@@ -1,9 +1,9 @@
 import Form from '../scaffold/form.vue'
 import Container from '../scaffold/container.vue'
 import Table from '../scaffold/table.vue'
-import {RouteRecordRaw} from 'vue-router'
-import {PageType, RemoteModule, RemoteRoute, RouteModule} from '../types'
-import {Component} from '@vue/runtime-core'
+import { RouteRecordRaw } from 'vue-router'
+import { PageType, RemoteModule, RemoteRoute, RouteModule } from '../types'
+import { Component } from '@vue/runtime-core'
 
 const getComponent = (item: RemoteRoute): Component => {
   if (item.view) {

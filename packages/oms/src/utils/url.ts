@@ -34,9 +34,7 @@ export function obj2Param(obj: Record<string, any>) {
   const params: string[] = []
   Object.keys(obj || {}).forEach(key => {
     params.push(
-      encodeURIComponent(key) +
-            '=' +
-            encodeURIComponent(obj[key] == null ? '' : obj[key])
+      encodeURIComponent(key) + '=' + encodeURIComponent(obj[key] == null ? '' : obj[key])
     )
   })
   return params.join('&')

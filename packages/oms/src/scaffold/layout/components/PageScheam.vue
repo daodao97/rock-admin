@@ -1,18 +1,18 @@
 <template>
-  <v-icon name="ra-code" @click="show = !show"/>
+  <v-icon name="ra-code" @click="show = !show" />
   <el-drawer
-      v-model="show"
-      title="PageSchema"
-      custom-class="my-drawer"
-      :direction="direction"
-      size="50%"
-      destroy-on-close
-      append-to-body
+    v-model="show"
+    title="PageSchema"
+    custom-class="my-drawer"
+    :direction="direction"
+    size="50%"
+    destroy-on-close
+    append-to-body
   >
     <json-view
-        :key="key"
-        :data="pageSchema"
-        v-bind="{
+      :key="key"
+      :data="pageSchema"
+      v-bind="{
         theme: '',
         fontSize: 14,
         lineHeight: 24,
@@ -26,29 +26,23 @@
 </template>
 <script>
 import JsonView from '../../../components/JsonView/index.vue'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { ref } from 'vue'
 
 export default {
   name: 'PageScheme',
-  components: {JsonView},
-  data() {
-    return {
-      show: false,
-      direction: 'rtl',
-      pageSchema: this.$route.meta.pageSchema || {}
-    }
-  },
-  computed: {
-    key() {
-      return this.$route.path
-    }
-  },
-  watch: {
-    '$route.path': {
-      handler() {
-        this.pageSchema = this.$route.meta.pageSchema || {}
-      },
-      deep: true
-    }
+  components: { JsonView },
+  setup() {
+    const show = ref(false)
+    const key = ref(1)
+    const direction = 'rtl'
+    const route = useRoute()
+    const pageSchema = ref(route.meta.pageSchema || {})
+    onBeforeRouteUpdate((to) => {
+      pageSchema.value = to.meta.pageSchema || {}
+      key.value++
+    })
+    return { show, key, direction, pageSchema }
   }
 }
 </script>

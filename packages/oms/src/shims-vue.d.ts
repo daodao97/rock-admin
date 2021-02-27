@@ -8,7 +8,15 @@ declare module '*.vue' {
 }
 
 declare module 'vue-router' {
+  // eslint-disable-next-line no-unused-vars
     interface _RouteRecordBase {
         hidden?: boolean
     }
+}
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface Window {
+    App: any;
+  }
 }

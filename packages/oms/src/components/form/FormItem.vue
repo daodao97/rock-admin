@@ -22,7 +22,7 @@
     </div>
   </el-form-item>
 </template>
-<script>
+<script lang="ts">
 import {getComponentName, getComponentProps, customFormComps} from './util'
 import _ from 'lodash'
 

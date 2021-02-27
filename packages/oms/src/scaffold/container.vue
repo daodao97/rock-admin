@@ -1,25 +1,17 @@
 <template>
-  <v-loading>
-    <router-view :key="key"/>
-  </v-loading>
+  <router-view :key="key" />
 </template>
 <script>
-import VLoading from '../components/VLoading.vue'
-import {defineComponent} from 'vue'
+import { defineComponent, ref } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
 
 export default defineComponent({
-  components: {
-    VLoading
-  },
-  data() {
-    return {
-      key: 1
-    }
-  },
-  watch: {
-    '$route': function () {
-      this.key++
-    }
+  setup() {
+    const key = ref(1)
+    onBeforeRouteUpdate(() => {
+      key.value++
+    })
+    return { key }
   }
 })
 </script>

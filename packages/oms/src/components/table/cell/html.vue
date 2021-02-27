@@ -1,7 +1,7 @@
 <template>
   <span v-html="data"/>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: 'CellSpan',
   props: {

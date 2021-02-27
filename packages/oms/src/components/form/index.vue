@@ -68,7 +68,7 @@
   </el-form>
 </template>
 
-<script>
+<script lang="ts">
 import {componentMap, makeFormOptions} from './util'
 import {
   ruleCompute,

@@ -8,7 +8,7 @@
     <div class="menu">功能5</div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import {merge, debounce} from 'lodash'
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
