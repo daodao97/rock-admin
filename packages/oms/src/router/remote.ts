@@ -2,10 +2,10 @@ import Form from '../scaffold/form.vue'
 import Container from '../scaffold/container.vue'
 import Table from '../scaffold/table.vue'
 import { RouteRecordRaw } from 'vue-router'
-import { PageType, RemoteModule, RemoteRoute, RouteModule } from '../types'
+import { PageType, RemoteModule, PageInfo, OmsModule } from '../types'
 import { Component } from '@vue/runtime-core'
 
-const getComponent = (item: RemoteRoute): Component => {
+const getComponent = (item: PageInfo): Component => {
   if (item.view) {
     return () => {
       return new Promise((resolve) => {
@@ -34,7 +34,7 @@ const getComponent = (item: RemoteRoute): Component => {
   return Container
 }
 
-function getPath(item: RemoteRoute) {
+function getPath(item: PageInfo) {
   let path = item.path
   // :id 默认转换为数字型匹配模式
   if (path.indexOf(':id') > -1 && path.indexOf(':id') + 3 === path.length) {
@@ -47,7 +47,7 @@ function getPath(item: RemoteRoute) {
       : path
 }
 
-const transRoute = (item: RemoteRoute): RouteRecordRaw => {
+const transRoute = (item: PageInfo): RouteRecordRaw => {
   const route: RouteRecordRaw = {
     path: getPath(item),
     name: item.path + item.name,
@@ -77,10 +77,10 @@ const transRoute = (item: RemoteRoute): RouteRecordRaw => {
   return route
 }
 
-export const transRemoteModules = (data: RemoteModule[]): RouteModule[] => {
-  const vueRouteModule: RouteModule[] = []
+export const transRemoteModules = (data: RemoteModule[]): OmsModule[] => {
+  const vueRouteModule: OmsModule[] = []
   data.forEach(item => {
-    const m: RouteModule = {
+    const m: OmsModule = {
       id: item.id,
       label: item.label,
       routes: []

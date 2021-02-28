@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { Settings, RemoteModule } from '../types'
+import { Settings, RemoteModule, Resource } from '../types'
 import { RouteRecordRaw } from 'vue-router'
 
 export interface User {
@@ -9,7 +9,7 @@ export interface User {
     isLodeRemoteRoutes: boolean,
     remoteRouter: RemoteModule[],
     customRouter: RouteRecordRaw[],
-    resource: string[][]
+    resource: Resource
 }
 
 export interface RootState {

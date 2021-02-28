@@ -59,37 +59,46 @@ export interface LoginTicket {
     ticket: string
 }
 
-export interface LoginResponse {
-    name: string,
-    token: string
-}
+export type ResourceIds = Array<Array<string>>
 
-export enum PageType {
-    custom,
-    list,
-    form,
-    customSchema
-}
-
-export interface RemoteRoute {
+export interface UserInfo {
     id: number,
+    name: string,
+    token: string,
+    avatar: string,
+    nickname: string,
+    role_ids: Array<string>,
+    resource: ResourceIds
+}
+
+export type Resource = Record<string, boolean | Record<string, boolean>>
+
+// eslint-disable-next-line no-unused-vars
+export enum PageType { custom, list, form, customSchema}
+
+export interface PageInfo {
+    module_id: number,
+    module_name: string
+    id: number,
+    pid: number,
     name: string,
     path: string,
     icon: string,
     view: string,
     is_show: number,
-    page_type?: PageType,
-    page_schema?: Record<string, any>,
-    children: RemoteRoute[]
+    type: number,
+    page_type: PageType,
+    page_schema: Record<string, any>,
+    children: PageInfo[]
 }
 
 export interface RemoteModule {
     id: number,
     label: string,
-    routes: RemoteRoute[]
+    routes: PageInfo[]
 }
 
-export interface RouteModule {
+export interface OmsModule {
     id: number,
     label: string,
     routes: RouteRecordRaw[]

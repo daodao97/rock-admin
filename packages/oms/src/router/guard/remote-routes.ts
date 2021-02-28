@@ -1,6 +1,6 @@
 import { Router, RouteRecordRaw } from 'vue-router'
 import store from '../../store'
-import { RemoteModule, RouteModule } from '../../types'
+import { RemoteModule, OmsModule } from '../../types'
 import { transRemoteModules } from '../remote'
 import Layout from '../../scaffold/layout/index.vue'
 
@@ -15,7 +15,7 @@ export default function(router: Router) {
       return
     }
     const remoteRoute: RemoteModule[] = await store.dispatch('user/loadRemoteRoutes')
-    const routeModules: RouteModule[] = transRemoteModules(remoteRoute)
+    const routeModules: OmsModule[] = transRemoteModules(remoteRoute)
     routeModules.forEach(item => {
       item.routes.forEach(each => {
         router.addRoute({

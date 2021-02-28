@@ -5,13 +5,6 @@ import example from '../data/example'
 
 const userApis: MockApi[] = [
   {
-    method: MockHttpMethod.GET,
-    url: '/test',
-    response(options: MockOption) {
-      return {}
-    }
-  },
-  {
     method: MockHttpMethod.POST,
     url: '/login',
     response(options: MockOption) {
