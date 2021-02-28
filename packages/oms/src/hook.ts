@@ -1,4 +1,4 @@
-import { OmsOptions, OmsPlugin } from './types'
+import { OmsOptions, OmsPlugin, UsePlugin } from './types'
 import store from './store'
 import router from './router'
 import ElementPlus from './plugins/element-plus'
@@ -24,9 +24,10 @@ function regRoutes(routes: RouteRecordRaw[] = []) {
   store.commit('user/setCustomRoutes', routes)
 }
 
-function regUse(app: App, use: any[]) {
+function regUse(app: App, use: UsePlugin[]) {
   use.forEach(item => {
     if (isObject(item)) {
+      // @ts-ignore
       item = [item]
     }
     // @ts-ignore

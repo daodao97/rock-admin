@@ -1,6 +1,6 @@
-import { DirectiveOptions } from 'vue'
+import type { ObjectDirective } from '@vue/runtime-core'
 
-const outClick: DirectiveOptions = {
+const outClick: ObjectDirective = {
   beforeMount(el, binding) {
     el.clickOutsideEvent = function(event: Event) {
       if (!(el === event.target || el.contains(event.target))) {

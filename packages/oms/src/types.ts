@@ -32,7 +32,7 @@ export interface Settings {
     tokenExpire?: number
 }
 
-type UsePlugin = Plugin | [Plugin, any]
+export type UsePlugin = Plugin | [Plugin, any]
 
 export interface OmsPlugin {
     use?: UsePlugin[],

@@ -13,25 +13,21 @@ const {
 const cwd = process.cwd()
 
 const TEMPLATES = [
-  green('vue'),
-  green('vue-ts')
+  green('js'),
+  green('ts')
 ]
-
-const renameFiles = {
-  _gitignore: '.gitignore'
-}
 
 async function init() {
   let targetDir = argv._[0]
   if (!targetDir) {
     /**
-         * @type {{ name: string }}
-         */
+   * @type {{ name: string }}
+   */
     const { name } = await prompt({
       type: 'input',
       name: 'name',
       message: `Project name:`,
-      initial: 'vite-project'
+      initial: 'oms-project'
     })
     targetDir = name
   }
@@ -89,9 +85,8 @@ async function init() {
   const templateDir = path.join(__dirname, `template-${template}`)
 
   const write = (file, content) => {
-    const targetPath = renameFiles[file]
-      ? path.join(root, renameFiles[file])
-      : path.join(root, file)
+    const realFile = file.replace('_', '.')
+    const targetPath = path.join(root, realFile)
     if (content) {
       fs.writeFileSync(targetPath, content)
     } else {

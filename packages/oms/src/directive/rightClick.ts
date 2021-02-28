@@ -1,7 +1,7 @@
 import bus from '../plugins/eventBus'
-import { DirectiveOptions } from 'vue'
+import type { ObjectDirective } from '@vue/runtime-core'
 
-const rightClient: DirectiveOptions = {
+const rightClient: ObjectDirective = {
   mounted: (el, binding) => {
     if (el === null) {
       return

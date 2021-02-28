@@ -17,8 +17,7 @@ export default {
     },
     column: {
       type: Object,
-      default: () => {
-      }
+      default: () => {}
     }
   },
   setup(props: Props) {

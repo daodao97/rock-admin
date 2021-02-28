@@ -1,19 +1,15 @@
 {
   "name": "@oms/create-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "bin": {
-    "create-app": "index.js",
-    "cva": "index.js"
+    "create-app": "./index.js"
   },
   "files": [
     "index.js",
     "template-*"
   ],
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "daodao97",
   "license": "MIT",
   "dependencies": {
