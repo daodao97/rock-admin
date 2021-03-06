@@ -2,6 +2,8 @@ import { AxiosInstance } from 'axios'
 import { Settings, RemoteModule, Resource } from '../types'
 import { RouteRecordRaw } from 'vue-router'
 
+export type strOrNum = string | number
+
 export interface User {
     name: string,
     token: string,
@@ -9,6 +11,7 @@ export interface User {
     isLodeRemoteRoutes: boolean,
     remoteRouter: RemoteModule[],
     customRouter: RouteRecordRaw[],
+    roleIds: strOrNum[],
     resource: Resource
 }
 

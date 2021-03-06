@@ -18,6 +18,19 @@ const userApis: MockApi[] = [
     }
   },
   {
+    method: MockHttpMethod.GET,
+    url: '/user/info',
+    response(options: MockOption) {
+      return {
+        code: 0,
+        payload: {
+          role_ids: [1],
+          resource: [[0, 20, 'formItems', 'radio'], [0, 1, 2]]
+        }
+      }
+    }
+  },
+  {
     url: '/user/routes',
     method: MockHttpMethod.GET,
     response: (options: MockOption) => {
@@ -28,6 +41,14 @@ const userApis: MockApi[] = [
             id: 0,
             label: '',
             routes: [
+              {
+                id: 20,
+                path: '/form/overview1',
+                name: '表单控件',
+                icon: 'el-icon-help',
+                page_type: 2,
+                page_schema: example.form
+              },
               {
                 id: 1,
                 name: '表单DEMO',

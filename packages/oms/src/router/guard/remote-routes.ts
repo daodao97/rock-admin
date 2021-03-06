@@ -1,4 +1,4 @@
-import { Router, RouteRecordRaw } from 'vue-router'
+import { Router } from 'vue-router'
 import store from '../../store'
 import { RemoteModule, OmsModule } from '../../types'
 import { transRemoteModules } from '../remote'
@@ -14,6 +14,7 @@ export default function(router: Router) {
       next()
       return
     }
+    await store.dispatch('user/info')
     const remoteRoute: RemoteModule[] = await store.dispatch('user/loadRemoteRoutes')
     const routeModules: OmsModule[] = transRemoteModules(remoteRoute)
     routeModules.forEach(item => {
