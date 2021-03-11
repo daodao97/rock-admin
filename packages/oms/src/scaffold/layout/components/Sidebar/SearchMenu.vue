@@ -1,36 +1,37 @@
 <template>
-  <el-select ref="search" v-model="selected" filterable placeholder="搜索菜单..." class="search-menu" @change="onselected">
+  <el-select v-model="selected" filterable placeholder="搜索菜单..." class="search-menu" @change="onselected">
     <template v-for="group in filterRoutes" :key="group.path">
       <template v-if="group.children !== undefined">
         <el-option-group
-            v-if="!group.hidden "
-            :label="group.meta.title"
+          v-if="group.meta.menuType !== 0"
+          :key="group.path + '-'"
+          :label="group.meta.title"
         >
           <template v-for="(item, index) in group.children" :key="item.path">
             <el-option
-                v-if="!item.hidden"
-                :label="(index === (group.children.length - 1) ? '└─' : '├─' )+ item.meta.title"
-                :value="item.path"
+              v-if="group.meta.menuType !== 0"
+              :label="(index === (group.children.length - 1) ? '└─' : '├─' )+ item.meta.title"
+              :value="item.path"
             />
           </template>
         </el-option-group>
       </template>
       <template v-else>
         <el-option
-            :label="'' + group.meta.title"
-            :value="group.path"
+          :label="'' + group.meta.title"
+          :value="group.path"
         />
       </template>
     </template>
   </el-select>
 </template>
 <script>
-import {mapGetters} from 'vuex'
-import {cloneDeep} from 'lodash'
+import { mapGetters } from 'vuex'
+import { cloneDeep } from 'lodash'
 
 function filterHidden(arr) {
   return arr.filter(each => {
-    if (each.hidden) {
+    if (each.meta?.menuType === 0) {
       return false
     }
     if (each.children) {
@@ -60,7 +61,7 @@ export default {
     }
   },
   methods: {
-    onselected: function (to) {
+    onselected: function(to) {
       this.$router.push(to)
       this.selected = ''
     }

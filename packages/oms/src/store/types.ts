@@ -11,6 +11,7 @@ export interface User {
     isLodeRemoteRoutes: boolean,
     remoteRouter: RemoteModule[],
     customRouter: RouteRecordRaw[],
+    menuRoutes: RouteRecordRaw[]
     roleIds: strOrNum[],
     resource: Resource
 }

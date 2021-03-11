@@ -13,6 +13,7 @@ export const user: User = {
   token: getToken(),
   customRouter: [],
   remoteRouter: [],
+  menuRoutes: [],
   isLodeRemoteRoutes: false,
   resource: {},
   roleIds: []
