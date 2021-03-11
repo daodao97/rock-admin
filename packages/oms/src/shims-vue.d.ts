@@ -12,6 +12,11 @@ declare module 'vue-router' {
     interface _RouteRecordBase {
         hidden?: boolean
     }
+    // eslint-disable-next-line no-unused-vars
+    interface RouteMeta {
+        pageSchema?: Record<string, any>
+        menuType: number
+    }
 }
 
 declare global {

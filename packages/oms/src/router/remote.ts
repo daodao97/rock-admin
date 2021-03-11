@@ -57,18 +57,26 @@ const transRoute = (item: PageInfo): RouteRecordRaw => {
       title: item.name,
       icon: item.icon,
       hidden: item.is_show !== undefined ? !item.is_show : false,
-      pageSchema: item.page_schema || {}
+      pageSchema: item.page_schema || {},
+      menuType: 2 // 0 隐藏, 1 目录 2 菜单
     },
     children: item.children ? item.children.map(each => transRoute(each)) : []
   }
-  if (route.children) {
+  const isShow = item.is_show !== undefined ? !!item.is_show : true
+  if (route.children && route.children.length > 0) {
     let allChildHidden = true
     route.children.forEach(each => {
       if (each.meta && !each.meta.hidden) {
         allChildHidden = false
       }
     })
-    if (route.children.length > 0 && allChildHidden) {
+    if (route.meta) {
+      route.meta.menuType = isShow ? 1 : 0
+    }
+    if (allChildHidden) {
+      if (route.meta) {
+        route.meta.menuType = 2
+      }
       route.redirect = route.children[0].path
       route.path = '/DIR' + route.redirect.replaceAll('/', '_').toUpperCase()
     }

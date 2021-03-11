@@ -6,7 +6,7 @@ import { OmsRouteMeta } from './types'
 import Login from '../scaffold/Login.vue'
 
 const NotFoundMeta: OmsRouteMeta = {
-  hidden: true
+  menuType: 0
 }
 
 const NoteFoundRoute: RouteRecordRaw = {
@@ -21,12 +21,17 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
+    name: 'Dashboard',
+    meta: {
+      title: 'test',
+      menuType: 1
+    },
     children: [
       {
         path: 'dashboard',
         name: 'Dashboard',
         component: Dashboard,
-        meta: { title: 'Dashboard', icon: 'el-icon-help', hidden: false }
+        meta: { title: 'Dashboard', icon: 'el-icon-help', menuType: 2 }
       }
     ]
   },
@@ -34,7 +39,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     component: Login,
-    meta: { title: '用户登录', hidden: true },
+    meta: { title: '用户登录', menuType: 0 },
     hidden: true
   }
 ]
