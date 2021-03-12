@@ -23,17 +23,17 @@ export default {
   setup(props: Props) {
     const { column, data } = toRefs(props)
     const type = computed(() => {
-      if (column.state !== undefined) {
-        return column.state[data] ?? ''
+      if (column.value.state !== undefined) {
+        return column.value.state[data.value] ?? ''
       }
       return ''
     })
     const getLabel = computed(() => {
-      const index = findIndex(column.options, {
-        value: data
+      const index = findIndex(column.value.options, {
+        value: data.value
       })
-      const obj = column.options[index]
-      return obj ? obj.label : data
+      const obj = column.value.options ? column.value.options[index] : false
+      return obj ? obj.label : data.value
     })
     return { type, getLabel }
   }

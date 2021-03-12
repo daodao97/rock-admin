@@ -31,10 +31,11 @@
   </span>
 </template>
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { strVarReplace } from '../../utils/string'
 import Base from './mixin'
 
-export default {
+export default defineComponent({
   name: 'VButton',
   mixins: [Base],
   props: {
@@ -80,11 +81,11 @@ export default {
       this.realTarget = strVarReplace(btn.target || '', this.$props.metaData)
       this.clickHandler[btn.type]()
     },
-    getBtnProps() {
+    getBtnProps() : any {
       return this.$props
     }
   }
-}
+})
 </script>
 
 <style lang="scss" module>

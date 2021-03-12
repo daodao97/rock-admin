@@ -2,7 +2,7 @@
   <span class="v-btn">
     <el-dropdown split-button @command="onclick" @click="() => onclick(0)">
       <span v-if="type === 'link'" class="el-dropdown-link">
-        {{ buttons[0].text }}<i class="el-icon-arrow-down el-icon--right"/>
+        {{ buttons[0].text }}<i class="el-icon-arrow-down el-icon--right" />
       </span>
       <template v-else>
         {{ buttons[0].text }}
@@ -10,27 +10,27 @@
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item
-              v-for="(item, index) in buttons.slice(1)"
-              :key="index + 'button-group'"
-              :command="index + 1"
+            v-for="(item, index) in buttons.slice(1)"
+            :key="index + 'button-group'"
+            :command="index + 1"
           >{{ item.text }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
     <template v-if="showContainer">
       <component
-          :is="'el-' + container"
-          v-model="showContainer"
-          append-to-body
-          :before-close="closeContainer"
-          :title="text"
-          :destroy-on-close="true"
+        :is="'el-' + container"
+        v-model="showContainer"
+        append-to-body
+        :before-close="closeContainer"
+        :title="text"
+        :destroy-on-close="true"
       >
         <slot>
           <component
-              :is="getSubComp()"
-              v-bind="getSubProps()"
-              v-on="getSubEvent()"
+            :is="getSubComp()"
+            v-bind="getSubProps()"
+            v-on="getSubEvent()"
           />
         </slot>
       </component>
@@ -38,10 +38,11 @@
   </span>
 </template>
 <script lang="ts">
+import { defineComponent } from 'vue'
 import Base from './mixin'
-import {strVarReplace} from '../../utils/string'
+import { strVarReplace } from '../../utils/string'
 
-export default {
+export default defineComponent({
   name: 'VButtonGroup',
   mixins: [Base],
   props: {
@@ -81,7 +82,7 @@ export default {
       return this.$props.buttons[this.activeIndex]
     }
   }
-}
+})
 </script>
 <style scoped>
 .el-dropdown-link {

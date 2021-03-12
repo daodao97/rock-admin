@@ -17,10 +17,7 @@
     >
       <!--    表头    -->
       <template #header>
-        <span
-          v-right-click="dev ? {devId: `headers[${index}]`} : undefined"
-          class="v-header"
-        >
+        <span v-right-click="dev ? {devId: `headers[${index}]`} : undefined">
           {{ item.label }}
           <el-tooltip v-if="item.info" effect="dark" placement="top-start">
             <i class="el-icon-warning-outline" />
@@ -60,9 +57,9 @@
   </el-table>
 </template>
 <script lang="ts">
-import Cells from './cell'
+import * as Cells from './cell'
 import VButton from '../button/index.vue'
-import CellEdit from './cellEdit/index.vue'
+import CellEdit from './cell-edit/index.vue'
 
 export default {
   name: 'TableStyle',
@@ -156,9 +153,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.v-header {
-  display: block;
-  width: 100%
-}
-</style>

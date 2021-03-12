@@ -124,16 +124,16 @@ const userApis: MockApi[] = [
                         is_show: false,
                         page_type: 2,
                         page_schema: example.form
+                      },
+                      {
+                        id: 10,
+                        path: '/user/:id',
+                        name: '编辑',
+                        icon: 'el-icon-help',
+                        is_show: false,
+                        page_type: 2,
+                        page_schema: example.form
                       }
-                      // {
-                      //     id: 10,
-                      //     path: '/user/:id',
-                      //     name: '编辑',
-                      //     icon: 'el-icon-help',
-                      //     is_show: false,
-                      //     page_type: 2,
-                      //     page_schema: example.form
-                      // }
                     ]
                   },
                   {
@@ -158,16 +158,16 @@ const userApis: MockApi[] = [
                         is_show: false,
                         page_type: 2,
                         page_schema: menu.form
+                      },
+                      {
+                        id: 14,
+                        path: '/menu/:id',
+                        name: '编辑',
+                        icon: 'el-icon-help',
+                        is_show: false,
+                        page_type: 2,
+                        page_schema: menu.form
                       }
-                      // {
-                      //     id: 14,
-                      //     path: '/menu/:id',
-                      //     name: '编辑',
-                      //     icon: 'el-icon-help',
-                      //     is_show: false,
-                      //     page_type: 2,
-                      //     page_schema: menu.form
-                      // }
                     ]
                   },
                   {
@@ -192,16 +192,16 @@ const userApis: MockApi[] = [
                         is_show: false,
                         page_type: 2,
                         page_schema: role.form
+                      },
+                      {
+                        id: 18,
+                        path: '/role/:id',
+                        name: '编辑',
+                        icon: 'el-icon-help',
+                        is_show: false,
+                        page_type: 2,
+                        page_schema: role.form
                       }
-                      // {
-                      //     id: 18,
-                      //     path: '/role/:id',
-                      //     name: '编辑',
-                      //     icon: 'el-icon-help',
-                      //     is_show: false,
-                      //     page_type: 2,
-                      //     page_schema: role.form
-                      // }
                     ]
                   }
                 ]
@@ -210,6 +210,13 @@ const userApis: MockApi[] = [
           }
         ]
       }
+    }
+  },
+  {
+    url: '/user/list',
+    method: MockHttpMethod.GET,
+    response: (options: MockOption) => {
+      return example.listMock
     }
   }
 ]

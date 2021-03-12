@@ -2,7 +2,7 @@
   <code-mirror v-model="localValue" :options="{mode: 'application/json', readOnly: disabled}" @update:modelValue="onchange"/>
 </template>
 <script lang="ts">
-import CodeMirror from '../CodeMirror/index.vue'
+import CodeMirror from '../codemirror/index.vue'
 import {isString} from '../../utils/type'
 
 export default {

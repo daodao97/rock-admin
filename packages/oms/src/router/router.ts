@@ -23,7 +23,6 @@ const routes: RouteRecordRaw[] = [
     redirect: '/dashboard',
     name: 'Dashboard',
     meta: {
-      title: 'test',
       menuType: 1
     },
     children: [

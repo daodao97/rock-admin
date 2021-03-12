@@ -4,18 +4,18 @@ import CellImage from './image.vue'
 import CellLink from './link.vue'
 import CellJson from './json.vue'
 import CellSpan from './span.vue'
-import CellRichText from './rich.jsx'
+import CellRichText from './rich'
 import CellIcon from './cellIcon.vue'
 import CellTpl from './tpl.vue'
 
-export default {
-    CellEnum,
-    CellHtml,
-    CellImage,
-    CellJson,
-    CellLink,
-    CellSpan,
-    CellRichText,
-    CellIcon,
-    CellTpl
+export {
+  CellEnum,
+  CellHtml,
+  CellImage,
+  CellJson,
+  CellLink,
+  CellSpan,
+  CellRichText,
+  CellIcon,
+  CellTpl
 }

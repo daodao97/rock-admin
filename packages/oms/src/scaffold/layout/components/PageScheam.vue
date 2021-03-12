@@ -25,7 +25,7 @@
   </el-drawer>
 </template>
 <script>
-import JsonView from '../../../components/JsonView/index.vue'
+import JsonView from '../../../components/jsonview/index.vue'
 import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import { ref } from 'vue'
 

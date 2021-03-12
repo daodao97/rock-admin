@@ -3,6 +3,7 @@ import { strVarReplace } from '../../utils/string'
 import { defineAsyncComponent } from 'vue'
 import MessageBox from 'element-plus/lib/el-message-box'
 
+// @ts-ignore
 export default {
   emits: ['click', 'action'],
   components: {
