@@ -1,23 +1,23 @@
 <template>
   <el-form
-      v-if="formItems.length > 0"
-      ref="formData"
-      :key="key"
-      v-loading="loading"
-      class="v-form"
-      :model="formData"
-      :rules="formRules"
-      :label-width="formOptions.labelWidth"
-      :inline="formOptions.inline"
-      :label-position="formOptions.labelPosition"
+    v-if="formItems.length > 0"
+    ref="formData"
+    :key="key"
+    v-loading="loading"
+    class="v-form"
+    :model="formData"
+    :rules="formRules"
+    :label-width="formOptions.labelWidth"
+    :inline="formOptions.inline"
+    :label-position="formOptions.labelPosition"
   >
     <el-row>
       <template v-for="(item, index) in formItemsSection" :key="'item-' + index">
         <!--   card     -->
         <component
-            :is="formOptions.inline ? 'span' : ((index === 0 && formItemsSection.length === 1) ? 'span': 'el-card')"
-            :class="formOptions.inline ? 'form-section-inline' : 'form-section'"
-            shadow="never"
+          :is="formOptions.inline ? 'span' : ((index === 0 && formItemsSection.length === 1) ? 'span': 'el-card')"
+          :class="formOptions.inline ? 'form-section-inline' : 'form-section'"
+          shadow="never"
         >
           <template v-if="item.name" #header>
             <span>{{ item.name }}</span>
@@ -28,19 +28,19 @@
               <template v-for="(each, i) in section.items" :key="'each-' + i">
                 <!--   col    -->
                 <component
-                    :is="formOptions.inline ? 'span' : 'el-col'"
-                    :span="each.col.span"
+                  :is="formOptions.inline ? 'span' : 'el-col'"
+                  :span="each.col.span"
                 >
                   <form-item
-                      v-if="canShow(each)"
-                      :key="each.id"
-                      :ref="each.field"
-                      v-model="formData[each.field]"
-                      v-right-click="dev ? {devId: `${prefixPath}${each.index}`} : undefined"
-                      :form-options="formOptions"
-                      :components="components"
-                      :item="each"
-                      @update:modelValue="(val) => onFiledChange(each.field, val)"
+                    v-if="canShow(each)"
+                    :key="each.id"
+                    :ref="each.field"
+                    v-model="formData[each.field]"
+                    v-right-click="dev ? {devId: `${prefixPath}${each.index}`} : undefined"
+                    :form-options="formOptions"
+                    :components="components"
+                    :item="each"
+                    @update:modelValue="(val) => onFiledChange(each.field, val)"
                   />
                 </component>
               </template>
@@ -50,17 +50,17 @@
       </template>
       <template v-if="formOptions.inline === true">
         <form-action
-            :form-options="formOptions"
-            @submit="submitForm('formData')"
-            @cancel="resetForm('formData')"
+          :form-options="formOptions"
+          @submit="submitForm('formData')"
+          @cancel="resetForm('formData')"
         />
       </template>
       <template v-else>
         <el-col :span="24">
           <form-action
-              :form-options="formOptions"
-              @submit="submitForm('formData')"
-              @cancel="resetForm('formData')"
+            :form-options="formOptions"
+            @submit="submitForm('formData')"
+            @cancel="resetForm('formData')"
           />
         </el-col>
       </template>
@@ -69,11 +69,11 @@
 </template>
 
 <script lang="ts">
-import {componentMap, makeFormOptions} from './util'
+import { componentMap, makeFormOptions } from './util'
 import {
   ruleCompute,
   showEleByClassName,
-  uuidv4,
+  uuidv4
 } from '../../utils'
 import {
   isArray,
@@ -82,16 +82,16 @@ import {
   type,
   parseBool
 } from '../../utils/type'
-import {camelToSnake} from '../../utils/string'
-import {getObjectNodeByKeyTree} from '../../utils/object'
+import { camelToSnake } from '../../utils/string'
+import { getObjectNodeByKeyTree } from '../../utils/object'
 import FormAction from './FormAction.vue'
 import FormItem from './FormItem.vue'
 import transRule from './rule'
-import {cloneDeep, merge, sum, findIndex} from 'lodash'
+import { cloneDeep, merge, sum, findIndex } from 'lodash'
 
 export default {
   name: 'VForm',
-  components: {FormAction, FormItem},
+  components: { FormAction, FormItem },
   provide() {
     return {
       formData: this.formData,
@@ -176,7 +176,7 @@ export default {
   computed: {
     formItemsSection() {
       const sectionIndex = []
-      const source = this.formItemsSource.map(function (val, index) {
+      const source = this.formItemsSource.map(function(val, index) {
         if (val.index === undefined) {
           val.index = `[${index}]`
         }
@@ -211,7 +211,7 @@ export default {
   watch: {
     props: {
       handler() {
-        const {formItems, options} = this.props
+        const { formItems, options } = this.props
         const initData = this.init(cloneDeep(formItems || []))
         Object.keys(initData).forEach((key) => {
           if (key === 'formData') {
@@ -229,7 +229,7 @@ export default {
   mounted() {
     if (this.$props.infoApi) {
       this.loading = true
-      this.$http.request({method: 'GET', url: this.$props.infoApi}).then(({payload}) => {
+      this.$http.request({ method: 'GET', url: this.$props.infoApi }).then(({ payload }) => {
         if (this.$props.infoApi !== '') {
           delete payload['infoApi']
         }
@@ -253,19 +253,19 @@ export default {
         items: []
       }
       section.forEach((item, index) => {
-        item.col = item.col || {span: 24}
+        item.col = item.col || { span: 24 }
         if (item.col.span === 24) {
-          items.push(Object.assign({}, cell, {items: [item]}))
+          items.push(Object.assign({}, cell, { items: [item] }))
         } else {
           if (items.length > 0) {
             const sumRes = sum(items[items.length - 1].items.map(each => each.col.span))
             if (sumRes < 24 && sumRes + item.col.span <= 24) {
               items[items.length - 1].items.push(item)
             } else {
-              items.push(Object.assign({}, cell, {items: [item]}))
+              items.push(Object.assign({}, cell, { items: [item] }))
             }
           } else {
-            items.push(Object.assign({}, cell, {items: [item]}))
+            items.push(Object.assign({}, cell, { items: [item] }))
           }
         }
       })
@@ -293,7 +293,7 @@ export default {
         }
         item.props = this.getComponentProps(item)
         if (this.formOptions.column !== undefined) {
-          item.col = {span: 24 / this.formOptions.column}
+          item.col = { span: 24 / this.formOptions.column }
         }
       })
       return {
@@ -365,11 +365,11 @@ export default {
       if (flag) {
         this.$props.saveApi &&
         this.$http
-            .request({method: 'POST', url: this.$props.saveApi, data: this.formData})
-            .then(({payload, message}) => {
-              this.$message({type: 'success', message: message || '保存成功'})
-              setTimeout(_ => this.execAfter('afterSubmit'), 1000)
-            })
+          .request({ method: 'POST', url: this.$props.saveApi, data: this.formData })
+          .then(({ payload, message }) => {
+            this.$message({ type: 'success', message: message || '保存成功' })
+            setTimeout(_ => this.execAfter('afterSubmit'), 1000)
+          })
         this.$emit('submit', this.formData)
       } else {
         showEleByClassName('is-error')
@@ -425,7 +425,7 @@ export default {
       iTime = setTimeout(() => {
         this.computedWhen(field, value)
       }, 300)
-      this.$emit('fieldchange', {field, value})
+      this.$emit('fieldchange', { field, value })
       this.$emit('update:modelValue', this.formData)
     },
     computedInit() {
@@ -442,22 +442,22 @@ export default {
       const obj = {}
       obj[field] = value
       Object.keys(set || []).forEach((field) => {
-        const index = findIndex(this.formItemsSource, {field: field})
+        const index = findIndex(this.formItemsSource, { field: field })
         if (ruleCompute(obj, when)) {
           this.formItemsSource[index] = merge(
-              this.formItemsSource[index],
-              set[field],
-              {id: uuidv4()}
+            this.formItemsSource[index],
+            set[field],
+            { id: uuidv4() }
           )
           if (set[field].value !== undefined) {
             this.formData[field] = set[field].value
             this.key++
           }
         } else if (m === false) {
-          const cacheIndex = findIndex(this.cacheItems, {field: field})
+          const cacheIndex = findIndex(this.cacheItems, { field: field })
           this.formItemsSource[index] = cloneDeep(
-              this.cacheItems[cacheIndex],
-              {id: (this.formItemsSource[index] || 0) + 1}
+            this.cacheItems[cacheIndex],
+            { id: (this.formItemsSource[index] || 0) + 1 }
           )
           const resetVal = this.cacheFormData[field] || this.cacheItems[cacheIndex].value
           if (set[field].value !== undefined && resetVal) {

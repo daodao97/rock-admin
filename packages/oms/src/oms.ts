@@ -13,6 +13,12 @@ import 'normalize.css/normalize.css'
 import './styles/index.scss'
 import router from './router'
 import { isDevMode } from './utils/env'
+import { AxiosInstance } from 'axios'
+
+let http : any
+export function useHttp():AxiosInstance {
+  return http
+}
 
 export function createAdmin(omsOptions?: OmsOptions) {
   const options = merge(defaultOptions, omsOptions)
@@ -26,7 +32,7 @@ export function createAdmin(omsOptions?: OmsOptions) {
   if (options?.mock) {
     startMock()
   }
-  const http = instance(options.axios)
+  http = instance(options.axios)
   store.dispatch('setHttp', http).then()
   app.config.globalProperties.$http = http
   if (isDevMode()) {

@@ -1,11 +1,14 @@
 <template>
   <span class="v-btn">
-    <el-dropdown split-button @command="onclick" @click="() => onclick(0)">
-      <span v-if="type === 'link'" class="el-dropdown-link">
-        {{ buttons[0].text }}<i class="el-icon-arrow-down el-icon--right" />
-      </span>
+    <!-- 按钮 -->
+    <el-dropdown v-bind="dropProps" @command="clickHandle">
+      <template v-if="dropProps.splitButton">
+        {{ showText }}
+      </template>
       <template v-else>
-        {{ buttons[0].text }}
+        <el-button :type="dropProps.type" @click="() => clickHandle(0)">
+          {{ showText }}<i class="el-icon-arrow-down el-icon--right" />
+        </el-button>
       </template>
       <template #dropdown>
         <el-dropdown-menu>
@@ -17,84 +20,117 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-    <template v-if="showContainer">
+    <!-- 弹窗容器 -->
+    <component
+      :is="'el-' + container"
+      v-if="showContainer"
+      v-model="showContainer"
+      v-bind="containerProps"
+      :before-close="beforeClose"
+      :title="containerTitle"
+    >
       <component
-        :is="'el-' + container"
-        v-model="showContainer"
-        append-to-body
-        :before-close="closeContainer"
-        :title="text"
-        :destroy-on-close="true"
-      >
-        <slot>
-          <component
-            :is="getSubComp()"
-            v-bind="getSubProps()"
-            v-on="getSubEvent()"
-          />
-        </slot>
-      </component>
-    </template>
+        :is="xsubComp"
+        v-bind="xsubProps"
+        v-on="xsubEvent"
+      />
+    </component>
   </span>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Base from './mixin'
+import { computed, ref } from 'vue'
+import { BaseButtonProps, baseComps, baseProps, getContainerProps, Plugin, plugins } from './base'
+import { SetupContext } from '@vue/runtime-core'
 import { strVarReplace } from '../../utils/string'
+type Buttons = BaseButtonProps[]
 
-export default defineComponent({
+interface DropProps {
+  splitButton: boolean,
+  type: string
+}
+
+const defaultDropProps : DropProps = {
+  splitButton: false
+}
+
+interface VButtonGroupProps {
+  buttons: Buttons,
+  props: DropProps
+}
+
+export default {
   name: 'VButtonGroup',
-  mixins: [Base],
+  components: { ...baseComps },
   props: {
-    type: {
-      type: String,
-      default: 'button' // link
-    },
     buttons: {
-      type: Array,
+      type: Array as Buttons,
       default: () => []
-    }
+    },
+    ...baseProps
   },
-  emits: ['click'],
-  data() {
+  emits: ['click', 'aflterClick', 'apiError', 'apiSuccess', 'action'],
+  setup(props: VButtonGroupProps, ctx: SetupContext) {
+    const dropProps : DropProps = { ...defaultDropProps, ...props.props }
+    const replaceText: (string) => string = (str) => {
+      return strVarReplace(str, props.metaData)
+    }
+    const activeIndex = ref(0)
+    const showContainer = ref(false)
+    const showText : string = computed<string>(() => {
+      if (props.buttons.length > 0) {
+        return replaceText(props.buttons[0].text || '')
+      }
+      return ''
+    })
+    const instance : Plugin<any> = ref(null)
+    const clickHandle = (index) => {
+      if (!props.preCheck(props)) {
+        return
+      }
+      activeIndex.value = index
+      const btn = props.buttons[index]
+      const realTarget : string = strVarReplace(btn.target || '', props.metaData)
+      instance.value = plugins[btn.type]
+      instance.value.onclick(realTarget, ctx, props.extra, () => {
+        showContainer.value = true
+      })
+    }
+    const containerProps = getContainerProps(props.container, props)
+    const beforeClose = () => {
+      if (!props.beforeCloseContainer()) {
+        return
+      }
+      showContainer.value = false
+    }
+    const containerTitle = computed<string>(() => {
+      const btn = props.buttons[activeIndex.value]
+      return replaceText(btn.text || '')
+    })
+    const xsubComp = computed(() => {
+      return instance.value.getSubComp ? instance.value.getSubComp() : ''
+    })
+    const xsubProps = computed(() => {
+      const btn = props.buttons[activeIndex.value]
+      return instance.value.getSubProps ? instance.value.getSubProps(btn.extra, props.metaData) : {}
+    })
+    const xsubEvent = computed(() => {
+      const btn = props.buttons[activeIndex.value]
+      return instance.value.getSubEvent ? instance.value.getSubEvent(btn, ctx, showContainer) : {}
+    })
+
     return {
-      activeIndex: undefined
-    }
-  },
-  methods: {
-    onclick(index) {
-      this.activeIndex = index
-      const btn = this.getBtnProps()
-      if (this.$props.preCheck(btn, index) !== true) {
-        return
-      }
-      if (btn['pre-check'] && btn['pre-check'](btn, index) !== true) {
-        return
-      }
-      this.realTarget = strVarReplace(btn.target || '')
-      this.clickHandler[btn.type]()
-      this.$emit('click')
-    },
-    closeContainer() {
-      this.showContainer = false
-    },
-    getBtnProps() {
-      return this.$props.buttons[this.activeIndex]
+      dropProps,
+      showText,
+      replaceText,
+      clickHandle,
+      showContainer,
+      containerProps,
+      beforeClose,
+      xsubComp,
+      xsubProps,
+      xsubEvent,
+      containerTitle
     }
   }
-})
+}
 </script>
-<style scoped>
-.el-dropdown-link {
-  cursor: pointer;
-  color: #409eff;
-}
-
-.el-icon-arrow-down {
-  font-size: 12px;
-}
-
-.el-dropdown + .el-button {
-  margin-left: 10px;
-}
-</style>

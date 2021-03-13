@@ -1,105 +1,96 @@
 <template>
   <span class="v-btn">
-    <template v-if="shape === 'icon' && props && props.icon">
-      <div class="el-btn-icon" @click="onclick">
-        <v-icon :name="props.icon || 'el-icon-warning-outline'" />
-      </div>
-    </template>
-    <template v-else>
-      <el-button v-if="text" v-bind="props" @click="onclick">
-        {{ text }}
-      </el-button>
-      <template v-else>
-        <el-button v-bind="props" @click="onclick" />
-      </template>
-    </template>
-    <template v-if="showContainer">
+    <!-- 按钮 -->
+    <ElButton v-if="relText" v-bind="$props.props" @click="lickhandler">{{ relText }}</ElButton>
+    <ElButton v-else v-bind="$props.props" @click="lickhandler" />
+    <!-- 弹窗容器 -->
+    <component
+      :is="'el-' + container"
+      v-if="showContainer"
+      v-model="showContainer"
+      v-bind="containerProps"
+      :before-close="beforeClose"
+      :title="relText"
+    >
       <component
-        :is="'el-' + container"
-        v-model="showContainer"
-        v-bind="getContainerProps()"
-      >
-        <slot>
-          <component
-            :is="getSubComp()"
-            v-bind="getSubProps()"
-            v-on="getSubEvent()"
-          />
-        </slot>
-      </component>
-    </template>
+        :is="xsubComp"
+        v-bind="xsubProps"
+        v-on="xsubEvent"
+      />
+    </component>
   </span>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { PropType, ref } from 'vue'
+import { baseProps, plugins, Plugin, VButtonProps, getContainerProps, baseComps } from './base'
 import { strVarReplace } from '../../utils/string'
-import Base from './mixin'
+import { SetupContext } from '@vue/runtime-core'
 
-export default defineComponent({
+type VButtonType = PropType<'jump' | 'api' | 'form' | 'table' | 'model'>
+
+export default {
   name: 'VButton',
-  mixins: [Base],
+  components: { ...baseComps },
   props: {
-    text: {
-      type: String,
-      default: ''
-    },
-    tips: {
-      type: String,
-      default: ''
-    },
     type: {
-      type: String,
-      default: ''
+      type: String as VButtonType,
+      default: '',
+      validator: (val: string) => {
+        return [
+          'jump', 'api', 'form', 'table', 'model'
+        ].includes(val)
+      }
     },
     target: {
       type: String,
       default: ''
     },
-    api: {
+    text: {
+      type: String,
+      default: undefined
+    },
+    extra: {
       type: Object,
-      default: () => {
+      default() {
+        return {}
       }
     },
-    form: {
-      type: Object,
-      default: () => {
-      }
-    },
-    list: {
-      type: Object,
-      default: () => {
-      }
-    }
+    ...baseProps
   },
-  emits: ['click'],
-  methods: {
-    onclick() {
-      if (this.$props.preCheck(this.$props) !== true) {
+  emits: ['click', 'aflterClick', 'apiError', 'apiSuccess', 'action'],
+  setup(props: VButtonProps, ctx: SetupContext) {
+    const showContainer = ref(false)
+    const instance : Plugin<any> = plugins[props.type]
+    const lickhandler = () => {
+      if (!props.preCheck(props)) {
         return
       }
-      const btn = this.getBtnProps()
-      this.realTarget = strVarReplace(btn.target || '', this.$props.metaData)
-      this.clickHandler[btn.type]()
-    },
-    getBtnProps() : any {
-      return this.$props
+      const realTarget : string = strVarReplace(props.target || '', props.metaData)
+      instance.onclick(realTarget, ctx, props.extra, () => {
+        showContainer.value = true
+      })
+    }
+    const relText = strVarReplace(props.text || '', props.metaData)
+    const containerProps = getContainerProps(props.container, props)
+    const beforeClose = () => {
+      if (!props.beforeCloseContainer()) {
+        return
+      }
+      showContainer.value = false
+    }
+    const xsubComp = instance.getSubComp ? instance.getSubComp() : ''
+    const xsubProps = instance.getSubProps ? instance.getSubProps(props.extra, props.metaData) : {}
+    const xsubEvent = instance.getSubEvent ? instance.getSubEvent(props, ctx, showContainer) : {}
+    return {
+      lickhandler,
+      relText,
+      showContainer,
+      containerProps,
+      beforeClose,
+      xsubComp,
+      xsubProps,
+      xsubEvent
     }
   }
-})
-</script>
-
-<style lang="scss" module>
-.el-btn-icon {
-  height: 100%;
-  line-height: 100%;
-  display: flex;
-  padding: 0 12px;
-  transition: all 0.3s;
-  cursor: pointer;
-  align-items: center;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.025);
-  }
 }
-</style>
+</script>

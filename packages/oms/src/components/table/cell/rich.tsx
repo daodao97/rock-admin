@@ -1,5 +1,3 @@
-import { reactive } from 'vue'
-
 export default {
   name: 'CellRichText',
   functional: true,
@@ -10,7 +8,7 @@ export default {
     }
   },
   setup(props: { data: any }) {
-    let value = reactive(props.data)
+    let value = props.data
     const explode = function(str: string) {
       const reg = /<([\s\S]*?)>/g
       let match = reg.exec(str)

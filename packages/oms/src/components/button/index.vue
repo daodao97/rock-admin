@@ -13,13 +13,11 @@
   </template>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
 import VButton from './VButton.vue'
 import VButtonGroup from './VButtonGroup.vue'
 import { isArray } from '../../utils/type'
 
-// @ts-ingore
-export default defineComponent({
+export default {
   components: {
     VButton, VButtonGroup
   },
@@ -37,7 +35,6 @@ export default defineComponent({
   data() {
     const local : any = []
     this.$props.buttons.forEach(item => {
-      // @ts-ignore
       delete item['when']
       local.push(item)
     })
@@ -58,5 +55,5 @@ export default defineComponent({
     rightClick(e: any) {
     }
   }
-})
+}
 </script>

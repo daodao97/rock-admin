@@ -336,7 +336,8 @@ const buttons = [
   {
     type: 'api',
     text: '请求接口',
-    api: {
+    target: '/test_api',
+    extra: {
       method: 'POST',
       url: '/test_api'
     }
@@ -344,7 +345,7 @@ const buttons = [
   {
     type: 'table',
     text: '表格',
-    table: {
+    extra: {
       infoApi: '/student/list_info',
       listApi: '/student/list'
     },
@@ -361,7 +362,7 @@ const buttons = [
     {
       type: 'api',
       text: '请求接口',
-      api: {
+      extra: {
         method: 'POST',
         url: '/test_api'
       }
@@ -370,7 +371,7 @@ const buttons = [
   {
     type: 'form',
     text: '表单',
-    form: {
+    extra: {
       infoApi: '/form',
       saveApi: '/save'
     },
@@ -449,7 +450,7 @@ const table = {
   rowButton: [
     {
       type: 'form',
-      form: {
+      extra: {
         infoApi: '/user/{id}',
         saveApi: '/user/{id}'
       },
@@ -460,7 +461,7 @@ const table = {
     },
     {
       type: 'api',
-      api: {
+      extra: {
         method: 'POST',
         url: '/student/{id}'
       },
