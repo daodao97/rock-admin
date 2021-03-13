@@ -110,7 +110,7 @@ import { isBool, isObject, isArray } from '../../utils/type'
 import { getPageTitle } from './lib'
 import pipe from '../../utils/pipe'
 import ExportAddButton from './export/index.vue'
-import TableStyle from './tableSytle.vue'
+import TableStyle from './TableSytle.vue'
 import { cloneDeep } from 'lodash'
 
 export default {

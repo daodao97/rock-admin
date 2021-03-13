@@ -15,7 +15,7 @@
       :label="item.label"
       v-bind="getColumnProps(item.props || {})"
     >
-      <!--    表头    -->
+      <!-- 表头 -->
       <template #header>
         <span v-right-click="dev ? {devId: `headers[${index}]`} : undefined">
           {{ item.label }}
@@ -41,7 +41,7 @@
         />
       </template>
     </el-table-column>
-    <!--     操作     -->
+    <!-- 操作 -->
     <el-table-column
       v-if="rowButton.length > 0"
       key="row-action"
@@ -54,22 +54,23 @@
       </template>
     </el-table-column>
     <template #empty> 没有数据</template>
+    <el-affix />
   </el-table>
 </template>
 <script lang="ts">
 import * as Cells from './cell'
 import VButton from '../button/index.vue'
 import CellEdit from './cell-edit/index.vue'
+import { ref, computed } from 'vue'
+import { useAffix } from './affix'
 
 export default {
   name: 'TableStyle',
-  components: Object.assign(
-    {
-      VButton,
-      CellEdit
-    },
-    Cells
-  ),
+  components: {
+    VButton,
+    CellEdit,
+    ...Cells
+  },
   inject: ['dev'],
   props: {
     headers: {
@@ -82,8 +83,7 @@ export default {
     },
     props: {
       type: Object,
-      default: _ => {
-      }
+      default: _ => {}
     },
     selection: {
       type: Boolean,
@@ -91,13 +91,11 @@ export default {
     },
     cellType: {
       type: Function,
-      default: () => {
-      }
+      default: () => {}
     },
     cellProps: {
       type: Function,
-      default: () => {
-      }
+      default: () => {}
     },
     rowButton: {
       type: Array,
@@ -105,50 +103,54 @@ export default {
     },
     makeRowButton: {
       type: Function,
-      default: () => {
-      }
+      default: () => {}
     },
     loadChildren: {
       type: Function,
-      default: () => {
-      }
+      default: () => {}
     }
   },
   emits: ['select-change', 'sort-change', 'cell-change', 'btn-action'],
-  data() {
-    return {
-      rowKey: 0
-    }
-  },
-  computed: {
-    actionWidth() {
-      if (this.rowButton.length === 1) {
+  setup(props, { emit }) {
+    const rowKey = ref(0)
+    const actionWidth = computed<number>(() => {
+      if (props.rowButton.length === 1) {
         return undefined
       }
       let ratio = 0
-      this.rowButton.forEach((item) => {
+      props.rowButton.forEach((item) => {
         ratio += item.text ? 73 : 60
       })
       return ratio
+    })
+    const handleSelectionChange = (row) => {
+      emit('select-change', row)
     }
-  },
-  methods: {
-    handleSelectionChange(rows) {
-      this.$emit('select-change', rows)
-    },
-    sortTable(data) {
-      this.$emit('sort-change', data)
-    },
-    getColumnProps(props) {
+    const sortTable = (data) => {
+      emit('sort-change', data)
+    }
+    const getColumnProps = (columPropse) => {
       return {
-        sortable: props.sortable ? 'custom' : false
+        sortable: columPropse.sortable ? 'custom' : false
       }
-    },
-    cellChange(index, field, value) {
-      this.$emit('cell-change', { index, field, value })
-    },
-    btnAction(btn) {
-      this.$emit('btn-action', btn)
+    }
+    const cellChange = (index, field, value) => {
+      emit('cell-change', { index, field, value })
+    }
+    const btnAction = (btn) => {
+      emit('btn-action', btn)
+    }
+
+    useAffix('el-table__header-wrapper')
+
+    return {
+      rowKey,
+      actionWidth,
+      handleSelectionChange,
+      sortTable,
+      getColumnProps,
+      cellChange,
+      btnAction
     }
   }
 }

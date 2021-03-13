@@ -1,13 +1,13 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-export interface InterceptorUse<V> {
+export interface InterceptorUse<V, T> {
     onFulfilled?: (value: V) => V | Promise<V>,
-    onRejected?: (error: any) => any
+    onRejected?: (error: T) => Promise<V>
 }
 
 export interface Interceptor {
-    request: InterceptorUse<AxiosRequestConfig>,
-    response: InterceptorUse<AxiosResponse>
+    request: InterceptorUse<AxiosRequestConfig, AxiosError>,
+    response: InterceptorUse<AxiosResponse, AxiosError>
 }
 
 export interface ApiResponse<R> {

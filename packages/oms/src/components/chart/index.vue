@@ -12,8 +12,7 @@ export default {
   props: {
     options: {
       type: Object,
-      default: _ => {
-      }
+      default: _ => {}
     }
   },
   setup(props) {
